@@ -1,0 +1,30 @@
+
+/* Extra small devices (phones, <576px) */
+@media screen and (max-width: 575px) {
+
+}
+
+/* Small devices (≥576px) */
+@media screen and (min-width: 576px) {
+
+}
+
+/* Medium devices (≥768px) */
+@media screen and (min-width: 768px) {
+
+}
+
+/* Large devices (≥992px) */
+@media screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (≥1200px) */
+@media screen and (min-width: 1200px) {
+
+}
+
+/* XXL devices (≥1400px) */
+@media screen and (min-width: 1400px) {
+
+}
