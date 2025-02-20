@@ -61,6 +61,7 @@ export const createCategory = async (req, res) => {
     }
 }
 
+
 // product details create
 export const createProductDetails = async (req, res) => {
     try {

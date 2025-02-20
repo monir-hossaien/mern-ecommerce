@@ -4,22 +4,35 @@ import CartModel from "../models/product/cartModel.js";
 export const addToCartService = async (req) => {
   try {
     const userId = new mongoose.Types.ObjectId(req.headers.id);
+    const productId = new mongoose.Types.ObjectId(req.params.productId);
     const reqBody = req.body;
     reqBody.userId = userId;
+    reqBody.productId = productId;
+    const existingItem = await CartModel.findOne({userId, productId})
+    if (existingItem) {
+      existingItem.quantity += 1;
+      await existingItem.save();
+      return {
+        statusCode: 200,
+        status: "success",
+        message: "Product quantity updated",
+        data: existingItem,
+      };
+    }
 
     const data = await CartModel.create(reqBody);
 
-    if (data == null || data === undefined) {
+    if (!data) {
       return {
         statusCode: 404,
         status: "fail",
-        message: "Product could not added in your cart list",
+        message: "Request failed",
       };
     }
     return {
       statusCode: 200,
       status: "success",
-      message: "Product added successfully",
+      message: "Request success",
       data: data,
     };
   } catch (e) {
@@ -65,30 +78,38 @@ export const updateCartService = async (req) => {
 
 export const deleteCartService = async (req) => {
   try {
-    const userId = new mongoose.Types.ObjectId(req.headers.id);
-    const reqBody = req.body;
-    reqBody.userId = userId;
-
-    const data = await CartModel.deleteOne(reqBody);
-
-    if (data == null || data === undefined) {
+    const cartId = new mongoose.Types.ObjectId(req.params?.cartId); // Ensure cartId exists
+    if (!cartId) {
       return {
-        statusCode: 401,
+        statusCode: 400,
         status: "fail",
-        message: "Product could not delete from your cart list",
+        message: "Cart ID is required",
       };
     }
+
+    // Check if the cart item exists
+    const cartItem = await CartModel.findById(cartId);
+    if (!cartItem) {
+      return {
+        statusCode: 404,
+        status: "fail",
+        message: "Cart item not found",
+      };
+    }
+
+    // Delete the cart item
+    await CartModel.deleteOne({ _id: cartId });
+
     return {
       statusCode: 200,
       status: "success",
-      message: "Product delete successfully from your cart list",
-      data: data,
+      message: "Request success",
     };
   } catch (e) {
     return {
       statusCode: 500,
       status: "fail",
-      message: "Internal Server error",
+      message: "Internal Server Error",
       error: e.message,
     };
   }
@@ -134,7 +155,6 @@ export const cartListService = async (req) => {
       { $unwind: "$brand" },
       {
         $project: {
-          _id: 0,
           userId: 0,
           productId: 0,
           createdAt: 0,

@@ -5,6 +5,7 @@ import productDetails from "../models/product/productDetailsModel.js";
 import ProductSlider from "../models/product/sliderModel.js";
 import ProductReview from "../models/product/reviewModel.js";
 import mongoose from "mongoose";
+import Remark from "../models/product/remarkModel.js";
 const objId = mongoose.Types.ObjectId;
 
 //product create
@@ -199,17 +200,25 @@ export const searchByBrandService = async (req) => {
 // Service function to get a product list by keyword
 export const searchByKeywordService = async (req) => {
     try {
-        const keyward = req.params.keyward;
-        const searchRegex = new RegExp(keyward, "i");
-        const searchParams = {title: searchRegex, shortDes: searchRegex};
-        const matchStage = {$match:{$or:[searchParams]}};
+        const keyword = req.params.keyword;
+        const searchRegex = new RegExp(keyword, "i");
+
+        const matchStage = {
+            $match: {
+                $or: [
+                    { title: searchRegex },
+                    { shortDescription: searchRegex },
+                    { remark: searchRegex }
+                ]
+            }
+        };
 
         const joinWithBrands = {$lookup: {from: "brands", localField: "brandId", foreignField: "_id", as: "Brand"}}
         const joinWithCategories = {$lookup: {from: "categories", localField: "categoryId", foreignField: "_id", as: "Category"}}
         const projection = {
             $project:{
-                categoryID:0,
-                brandID:0,
+                categoryId:0,
+                brandId:0,
                 "Category._id": 0,
                 "Brand._id": 0,
                 "Category.createdAt": 0,
@@ -224,7 +233,7 @@ export const searchByKeywordService = async (req) => {
 
         const products = await Product.aggregate(pipeline);
         if (!products || products.length === 0) {
-            return {statusCode: 404, status: "fail", message: "No products found with this keyword", data: [],};
+            return {statusCode: 404, status: "fail", message: "No products found with this keyword"};
         }
         return {statusCode: 200, status: "success", message: "Products retrieved successfully", data: products,
         };
@@ -391,29 +400,29 @@ export const readProductDetailService = async (req) => {
                     from: "categories",
                     localField: "categoryId",
                     foreignField: "_id",
-                    as: "Category",
+                    as: "category",
                 }
             },
-            {$unwind:"$Category"},
+            {$unwind:"$category"},
             {
                 $lookup:{
                     from: "brands",
                     localField: "brandId",
                     foreignField: "_id",
-                    as: "Brand",
+                    as: "brand",
                 }
             },
-            {$unwind:"$Brand"},
+            {$unwind:"$brand"},
             {
                 $lookup:{
                     from: "productdetails",
                     localField: "_id",
                     foreignField: "productId",
-                    as: "ProductDetails",
+                    as: "productDetails",
                 }
             },
 
-            {$unwind:"$ProductDetails"},
+            {$unwind:"$productDetails"},
 
             {
                 $project:{
@@ -425,7 +434,6 @@ export const readProductDetailService = async (req) => {
                     "Category.updatedAt": 0,
                     "Brand.createdAt": 0,
                     "Brand.updatedAt": 0
-
                 }
             }
         ])
@@ -435,20 +443,19 @@ export const readProductDetailService = async (req) => {
                 statusCode: 404,
                 status: "fail",
                 message: "No product found",
-                data: [],
             };
         }
         return {
             statusCode: 200,
             status: "success",
-            message: "Product retrieved successfully",
+            message: "Request Success",
             data: product,
         };
     }catch (e) {
         return {
             statusCode: 500,
             status: "error",
-            message: "Failed to retrieve product",
+            message: "Request failed",
             error: e.message,
         };
     }

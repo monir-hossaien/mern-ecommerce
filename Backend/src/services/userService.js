@@ -1,8 +1,8 @@
-import {OTP_EXPIRE_TIME, RANDOM_OTP, saltRounds} from "../../src/config/config.js";
+import {generateOTPExpireTime, generateOTP} from "../../src/config/config.js";
 import SendEmail from "../../src/utility/email.js";
 import {createToken} from "../utility/token.js";
 import mongoose from "mongoose";
-import UserProfile from "../models/customers/profileModel.js";
+import UserProfile from "../models/user/profileModel.js";
 import User from "../models/user/userModel.js";
 import ProductReview from "../models/product/reviewModel.js";
 
@@ -46,8 +46,8 @@ export const emailVerifyService = async (req)=>{
             return {statusCode: 404, status: "fail", message: "User not found"};
         }
         else{
-            const updateOTP = RANDOM_OTP;
-            const expires = OTP_EXPIRE_TIME;
+            const updateOTP = generateOTP();
+            const expires = generateOTPExpireTime();
             await User.updateOne({email: user_email}, {$set:{otp: updateOTP, otpExpire: expires}}, {new: true});
 
             //otp send to email

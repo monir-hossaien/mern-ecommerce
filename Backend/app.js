@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import helmet from 'helmet';
 import router from './routes/api.js';
 import {DATABASE_URL, MAX_JSON_SIZE, REQUEST_NUMBER, REQUEST_TIME, WEB_CACHE} from "./src/config/config.js";
+import * as path from "node:path";
 
 const app = express();
 
@@ -35,6 +36,13 @@ mongoose.connect(DATABASE_URL)
 
 //router setup
 app.use("/api", router);
+
+app.use(express.static('client/dist'));
+
+// Add React Front End Routing
+app.get('*',function (req,res) {
+    res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
+})
 
 // unexpected routes error handling
 app.use((req,res,next)=>{

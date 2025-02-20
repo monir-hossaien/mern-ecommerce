@@ -8,28 +8,28 @@ const ProductImageGallery = () => {
 
     let images = [
         {
-            original: productDetails?.productImg[0],
-            thumbnail: productDetails?.productImg[0],
+            original: productDetails?.productImg[0] || '',
+            thumbnail: productDetails?.productImg[0] || '',
         },
         {
-            original: productDetails?.productImg[0],
-            thumbnail: productDetails?.productImg[0],
+            original: productDetails?.productImg[0] || '',
+            thumbnail: productDetails?.productImg[0] || '',
         },
         {
-            original: productDetails?.productImg[0],
-            thumbnail: productDetails?.productImg[0],
+            original: productDetails?.productImg[0] || '',
+            thumbnail: productDetails?.productImg[0] || '',
         },
         {
-            original: productDetails?.productImg[0],
-            thumbnail: productDetails?.productImg[0],
+            original: productDetails?.productImg[0] || '',
+            thumbnail: productDetails?.productImg[0] || '',
         },
         {
-            original: productDetails?.productImg[0],
-            thumbnail: productDetails?.productImg[0],
+            original: productDetails?.productImg[0] || '',
+            thumbnail: productDetails?.productImg[0] || '',
         },
         {
-            original: productDetails?.productImg[1],
-            thumbnail: productDetails?.productImg[1],
+            original: productDetails?.productImg[1] || '',
+            thumbnail: productDetails?.productImg[1] || '',
         }
 
     ];

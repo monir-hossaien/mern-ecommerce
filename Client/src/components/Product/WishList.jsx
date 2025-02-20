@@ -62,6 +62,7 @@ const WishList = () => {
                     <h4 className="pb-3">Favourites ({wishCount} items)</h4>
                     {wishProductList.map((item, i) => {
                         const { productImg, title, price, stock, discount, discountPrice, star, _id } = item?.product;
+                        console.log(item)
                         return (
                             <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3 py-2">
                                 <div className="card wrapper position-relative h-100">

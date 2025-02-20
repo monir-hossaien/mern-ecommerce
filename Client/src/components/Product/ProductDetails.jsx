@@ -14,6 +14,7 @@ import WishBtn from "../Button/WishBtn.jsx";
 const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const { productDetails } = productStore();
+
     const { formData, inputOnchange, createCartRequest, setCartSubmit, getCartList } = cartStore();
     const { setWistSubmit, createWishRequest, getWishList } = wishStore();
 
@@ -186,7 +187,7 @@ const ProductDetails = () => {
                             <div className="tab-pane fade show active" id="Speci-tab-pane" role="tabpanel"
                                  aria-labelledby="Speci-tab" tabIndex="0">
                                 {
-                                    parse(productDetails?.['productDetails']?.description)
+                                    parse(productDetails?.['productDetails']?.description || '')
                                 }
                             </div>
                             <div className="tab-pane fade" id="Review-tab-pane" role="tabpanel"

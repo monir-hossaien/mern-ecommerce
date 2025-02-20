@@ -3,7 +3,7 @@ import Product from "../models/product/productModel.js";
 import InvoiceModel from "../models/payment/invoiceModel.js";
 import InvoiceProductModel from "../models/payment/invoiceProductsModel.js";
 import PaymentSetting from "../models/payment/paymentSettingsModel.js";
-import UserProfile from "../models/customers/profileModel.js";
+import UserProfile from "../models/user/profileModel.js";
 import FormData from "form-data";
 import axios from "axios";
 import crypto from "crypto";

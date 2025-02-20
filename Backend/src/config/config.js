@@ -18,10 +18,13 @@ export const REQUEST_TIME=20*60*1000
 export const REQUEST_NUMBER=2000
 
 // generate otp
-export const RANDOM_OTP = Math.floor(100000 + Math.random() * 900000);
-export const OTP_EXPIRE_TIME = Date.now() + 5 * 60 * 1000; // Timestamp for 5 minutes ahead
+export const generateOTP = () => Math.floor(100000 + Math.random() * 900000);
+
+//otp expire
+export const generateOTPExpireTime = () => new Date(Date.now() + 5 * 60 * 1000);
+
 
 //cookie expire time
-export const COOKIE_EXPIRE_TIME =  '24h'; // Timestamp for  24h ahead
+export const COOKIE_EXPIRE_TIME =  24 * 60 * 60 * 1000 // Cookie expires in 24 hours
 //user create password hashing
 export const saltRounds = 10;

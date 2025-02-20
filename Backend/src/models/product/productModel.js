@@ -5,7 +5,7 @@ const DataSchema = new mongoose.Schema({
         type: String,
         required: [true, "Title is required"],
     },
-    description: {
+        shortDescription: {
         type: String,
         required: [true, "Description is required"],
     },
@@ -21,8 +21,8 @@ const DataSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-    image: {
-        type: String,
+        productImg: {
+        type: [String],
         required: [true, "Image is required"],
     },
     stock: {

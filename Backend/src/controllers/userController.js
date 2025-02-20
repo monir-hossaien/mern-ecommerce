@@ -25,7 +25,12 @@ export const login = async (req, res) => {
     const result = await loginService(req);
     if(result.status === "success") {
         //create cookie options
-        const cookieOptions = {expire: COOKIE_EXPIRE_TIME, httpOnly: true};
+        const cookieOptions = {
+            httpOnly: false,
+            secure: false,
+            maxAge: COOKIE_EXPIRE_TIME,
+            path: "/"
+        };
         //set user access token in res cookie
         res.cookie('token', result.token, cookieOptions);
         return res.json(result);

@@ -99,8 +99,8 @@ export const productStore = create((set)=>({
     productDetails: null,
     getProductDetails: async (productID)=>{
         set({productDetails: null})
-        let res = await axios.get(`/api/productDetails/${productID}`)
-        let data = res.data.data
+        let res = await axios.get(`/api/product-details/${productID}`)
+        let data = res.data.data[0]
         if(res.data.status === "success"){
             set({productDetails: data})
         }

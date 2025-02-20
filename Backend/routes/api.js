@@ -7,6 +7,7 @@ import * as wishController from "../src/controllers/wishController.js";
 import * as featureController from "../src/controllers/featureController.js";
 import * as cartController from "../src/controllers/cartController.js";
 import * as invoiceController from "../src/controllers/invoiceController.js"
+import * as remarkController from "../src/controllers/remarkController.js"
 
 //import auth middleware
 import {authenticateUser} from "../src/middleware/authMiddleware.js";
@@ -31,7 +32,7 @@ router.get("/productListByKeyword/:keyword", productController.productListByKeyw
 router.get("/productListByRemark/:remark", productController.productListByRemark)
 router.get("/getSimilarProducts/:catId", productController.getSimilarProducts)
 router.get("/getAllProducts", productController.getAllProducts)
-router.get("/readProductDetails/:productId", productController.readProductDetails)
+router.get("/product-details/:productId", productController.readProductDetails)
 router.get("/productReviewList/:productId", authenticateUser, productController.productReviewList)
 
 
@@ -41,7 +42,7 @@ router.get("/productReviewList/:productId", authenticateUser, productController.
 router.post("/register", userController.userRegistration);
 router.post("/login", userController.login);
 router.get("/logout", authenticateUser, userController.logout);
-router.get("/verify-email", userController.emailSent);
+router.post("/send-otp", userController.emailSent);
 router.post("/create-profile", authenticateUser, userController.createProfile);
 router.post("/update-profile", authenticateUser, userController.updateProfile);
 router.post("/create-review/:productId", authenticateUser, userController.createReview);
@@ -49,14 +50,14 @@ router.get("/read-profile", authenticateUser, userController.readProfile);
 
 
 //wishes api
-router.post("/create-wishes/:productId", authenticateUser, wishController.createWishesProduct);
-router.get("/read-wishes", authenticateUser, wishController.readWishList);
+router.post("/create-wish/:productId", authenticateUser, wishController.createWishesProduct);
+router.get("/wish-list", authenticateUser, wishController.readWishList);
 router.delete("/delete-wish/:productId", authenticateUser, wishController.deleteWishProduct);
 
 // product cart api
-router.post("/add-cart", authenticateUser, cartController.addToCart);
+router.post("/add-cart/:productId", authenticateUser, cartController.addToCart);
 router.put("/update-cart/:id", authenticateUser, cartController.updateCart);
-router.delete("/delete-cart", authenticateUser, cartController.deleteCart);
+router.delete("/delete-cart/:cartId", authenticateUser, cartController.deleteCart);
 router.get("/cart-list", authenticateUser, cartController.cartList);
 
 //payment related api
@@ -78,6 +79,8 @@ router.get("/get-features", featureController.getFeaturesList);
 router.post("/create-legal", featureController.createLegal);
 router.get("/legal-list", featureController.getLegalList);
 
-
+//remark api
+router.post("/create-remark", remarkController.createRemark);
+router.get("/remark-list", remarkController.remarkList);
 
 export default router;

@@ -8,15 +8,21 @@ export const createWishesService = async (req)=>{
         const userId = new objId(id);
         const productId = new objId(req.params.productId);
         const wishProduct = {userId, productId};
-        await WishModel.updateOne(
-            {productId: productId},
-            {$set: wishProduct},
-            {upsert: true}
-        )
+        const existingProduct = await WishModel.findOne({userId, productId})
+
+        if(existingProduct){
+            return {
+                status: "failed",
+                statusCode: 400,
+                message: "Product already exists"
+            }
+        }
+        let result = await WishModel.create(wishProduct)
         return {
-            statusCode: 200,
+            statusCode: 201,
             status: "success",
-            message:"Product added successfully in your wish",
+            message:"Request success",
+            data: result
         }
 
     }
@@ -53,12 +59,12 @@ export const wishListService = async (req) => {
                 $lookup: {from: "brands", localField: "product.brandId", foreignField: "_id", as: "brand"}
             },
             {$unwind: "$brand"},
-            {$project:{_id: 0, userId: 0, productId: 0, createdAt: 0, updatedAt: 0, "product._id": 0, "product.categoryId": 0, "product.brandId": 0, "category._id":0, "brand._id": 0}},
+            {$project:{_id: 0, userId: 0, productId: 0, createdAt: 0, updatedAt: 0, "product.categoryId": 0, "product.brandId": 0, "category._id":0, "brand._id": 0}},
         ])
          return {
              statusCode: 200,
              status: "success",
-             message:"Wish list get successfully",
+             message:"Request success",
              data: data
          }
     }
@@ -76,7 +82,7 @@ export const deleteWishService = async (req)=>{
     try {
         const id = req.params.productId;
         const productId = new objId(id);
-        const wishProduct = await WishModel.findOne({productId: productId});
+        const wishProduct = await WishModel.findOne({productId});
         if (!wishProduct) {
             return {
                 statusCode: 404,
@@ -85,11 +91,11 @@ export const deleteWishService = async (req)=>{
             }
         }
         // delete wishes product from wish list
-        await WishModel.deleteOne({productId: productId});
+        await WishModel.deleteOne({productId});
         return {
             statusCode: 200,
             status: "success",
-            message:"Product deleted successfully from your wish list",
+            message:"Request success",
         }
 
     }catch (e) {
