@@ -34,7 +34,7 @@ router.get("/productListByRemark/:remark", productController.productListByRemark
 router.get("/getSimilarProducts/:catId", productController.getSimilarProducts)
 router.get("/getAllProducts", productController.getAllProducts)
 router.get("/product-details/:productId", productController.readProductDetails)
-router.get("/productReviewList/:productId", authenticateUser, productController.productReviewList)
+router.get("/review-list/:productId", authenticateUser, productController.productReviewList)
 
 
 
@@ -64,7 +64,7 @@ router.get("/cart-list", authenticateUser, cartController.cartList);
 //payment related api
 router.post("/create-invoice", authenticateUser, invoiceController.createInvoice);
 router.get("/invoice-list", authenticateUser, invoiceController.invoiceList);
-router.get("/invoice-products/:invoiceId", authenticateUser, invoiceController.invoiceProductsList);
+router.get("/invoice-details/:invoiceId", authenticateUser, invoiceController.invoiceProductsList);
 router.post("/create-paymentSettings", invoiceController.createPaymentSettings);
 
 router.post("/payment-success/:transactionId", invoiceController.paymentSuccess);

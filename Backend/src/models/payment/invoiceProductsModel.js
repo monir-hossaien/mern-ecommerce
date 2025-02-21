@@ -24,8 +24,8 @@ const DataSchema = new mongoose.Schema({
     },
     color: {
         type: String,
-        enum: ["red", "green", "blue"],
-        default: "red",
+        enum: ['Red', 'Green', 'Blue', 'Black'],
+        default: "Red",
     },
     size: {
         type: String,

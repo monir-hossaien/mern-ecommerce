@@ -132,7 +132,7 @@ export const productStore = create((set)=>({
     //product review list
     reviewList: null,
     getReviewList: async (productID)=>{
-        let res = await axios.get(`/api/productReviewList/${productID}`)
+        let res = await axios.get(`/api/review-list/${productID}`)
         let data = res.data.data
         if(res.data.status === "success"){
             set({reviewList: data})

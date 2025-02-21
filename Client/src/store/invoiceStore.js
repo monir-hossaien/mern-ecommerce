@@ -34,9 +34,8 @@ export const invoiceStore = create((set)=>({
             const data = res?.data?.data; // API returns an array
 
             if (data && data.length > 0) {
-                const profile = data[0].profile;  // Extract customer profile
                 const invoice = data[0].invoice;  // Extract invoice details
-                set({ invoiceDetailsData: { profile, invoice, products: data } });
+                set({ invoiceDetailsData: {invoice, products: data } });
             }
         } catch (err) {
             unauthorized(err?.response?.status);

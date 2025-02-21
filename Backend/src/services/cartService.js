@@ -162,7 +162,13 @@ export const cartListService = async (req) => {
           "product.categoryId": 0,
           "product.brandId": 0,
           "category._id": 0,
+          "category.categoryImg": 0,
+          "category.createdAt": 0,
+          "category.updatedAt": 0,
           "brand._id": 0,
+          "brand.brandImg": 0,
+          "brand.createdAt": 0,
+          "brand.updatedAt": 0,
         },
       },
     ]);
@@ -170,14 +176,14 @@ export const cartListService = async (req) => {
     return {
       statusCode: 200,
       status: "success",
-      message: "Wish list get successfully",
+      message: "Request success",
       data: data,
     };
   } catch (e) {
     return {
       statusCode: 500,
       status: "success",
-      message: "Internal server error",
+      message: "Something went wrong!",
       error: e.message,
     };
   }

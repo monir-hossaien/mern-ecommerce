@@ -8,22 +8,22 @@ const DataSchema = new mongoose.Schema({
         required: true,
     },
     customerDetails: {
-        type: String,
+        type: Object,
         required: true,
     },
     shippingDetails: {
-        type: String,
+        type: Object,
         required: true,
     },
     deliveryStatus: {
         type: String,
-        enum: ['PENDING', 'CANCELED', 'FAILED', 'SUCCESS'],
-        default: 'PENDING',
+        enum: ['Pending', 'Canceled', 'Failed', 'Success'],
+        default: 'Pending',
     },
     paymentStatus: {
         type: String,
-        enum: ['PENDING', 'CANCELED', 'FAILED', 'SUCCESS'],
-        default: 'PENDING',
+        enum: ['Pending', 'Canceled', 'Failed', 'Success'],
+        default: 'Pending',
     },
     transactionId: {
         type: String,

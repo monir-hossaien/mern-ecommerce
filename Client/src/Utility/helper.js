@@ -91,13 +91,13 @@ export const InfoAlert = async (msg)=> {
 }
 
 export const paymentStatusColor = (paymentStatus)=>{
-    if(paymentStatus === "PENDING"){
+    if(paymentStatus === "Pending"){
         return "bg-warning text-dark";
-    }else if(paymentStatus === "SUCCESS"){
+    }else if(paymentStatus === "Success"){
         return "bg-success text-white";
-    }else if(paymentStatus === "FAILED"){
+    }else if(paymentStatus === "Failed"){
         return "bg-danger text-white";
-    }else if(paymentStatus === "CANCEL") {
+    }else if(paymentStatus === "Cancelled") {
         return "bg-danger text-white";
     }
 }

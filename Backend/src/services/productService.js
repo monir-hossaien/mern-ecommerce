@@ -466,49 +466,59 @@ export const reviewListService = async (req)=>{
     try {
         const id = req.params.productId;
         const productId = new objId(id);
-        const data = await ProductReview.aggregate([
-            {$match:{productId: productId}},
-            {
-                $lookup:{
-                    from: "products",
-                    localField: "productId",
-                    foreignField: "_id",
-                    as: "Product",
-                }
-            },
-            {$unwind:"$Product"},
-            {
-                $lookup:{
-                    from: "profiles",
-                    localField: "userId",
-                    foreignField: "userId",
-                    as: "Profile",
-                }
-            },
-            {$unwind:"$Profile"},
-            {
-                $project:{
-                    description: 1,
-                    rating: 1,
-                    "Product.title": 1,
-                    "Profile.name": 1
-                }
+
+        const matchStage = {$match:{productId: productId}}
+
+        // join with profile collection
+        const joinWithProfile = {
+            $lookup:{
+                from: "profiles",
+                localField: "userId",
+                foreignField: "userId",
+                as: "profile",
             }
-        ])
+        }
+        // join with user collection
+        const joinWithUser = {
+            $lookup:{
+                from: "users",
+                localField: "userId",
+                foreignField: "_id",
+                as: "user",
+            }
+        }
+        const projection ={
+            $project:{
+                description: 1,
+                rating: 1,
+                createdAt: 1,
+                "profile.name": 1,
+                "user.profileImage": 1
+            }
+        }
+        const pipeline = [
+            matchStage,
+            joinWithProfile,
+            {$unwind:"$profile"},
+            joinWithUser,
+            {$unwind:"$user"},
+            projection
+        ]
+        const data = await ProductReview.aggregate(pipeline)
         if (data === null || data === undefined) {
             return {statusCode: 404, status: "fail", message: "No product found"};
         }
         return {
             statusCode: 200,
             status: "success",
-            message: "Review retrieved successfully",
+            message: "Request success",
             data: data
         }
     }catch (e) {
         return {
             statusCode: 500,
             status: "fail",
-            message: "Fail to retrieve review",
+            message: "Something went wrong!",
             error: e.message,
         }
     }

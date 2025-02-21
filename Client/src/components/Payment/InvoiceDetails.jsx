@@ -11,9 +11,9 @@ import ReviewModal from "../Product/ReviewModal.jsx";
 
 const InvoiceDetails = () => {
     const [selected, setSelected] = useState(null);
-    const {invoiceDetailsData, getInvoiceDetails, createInvoice} = invoiceStore()
+    const {invoiceDetailsData, getInvoiceDetails} = invoiceStore()
     const {invoiceID} = useParams()
-    const {setCartSubmit} = cartStore()
+    // const {setCartSubmit} = cartStore()
     useEffect(() => {
         (async ()=>{
             await getInvoiceDetails(invoiceID)
@@ -38,9 +38,8 @@ const InvoiceDetails = () => {
     if(invoiceDetailsData === null){
         return <InVoiceDetailsSkeleton/>
     }
-    const {profile, invoice, products} = invoiceDetailsData;
-    const {address, city, country, fax, name, phone, postalCode, shippingAddress, shippingCity, shippingCountry, shippingName, shippingPhone, shippingPostalCode, shippingState, state} = profile
-    const {transactionId, total, vat, payable, createdAt, paymentStatus} = invoice
+    const {invoice, products} = invoiceDetailsData;
+    const {transactionId, total, vat, payable, createdAt, paymentStatus, customerDetails, shippingDetails} = invoice
 
     return (
         <div className="container py-3">
@@ -52,8 +51,8 @@ const InvoiceDetails = () => {
                     <h5>Status: <p className={`badge ${paymentStatusColor(paymentStatus)}`}>{paymentStatus}</p></h5>
                 </div>
 
-                <div className="">
-                    <div className="">
+                <div>
+                    <div>
 
                         {/* Customer Info */}
                         <div className="mb-4">
@@ -74,14 +73,14 @@ const InvoiceDetails = () => {
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>{name}</td>
-                                        <td>{phone}</td>
-                                        <td>{fax}</td>
-                                        <td>{address}</td>
-                                        <td>{city}</td>
-                                        <td>{country}</td>
-                                        <td>{state}</td>
-                                        <td>{postalCode}</td>
+                                        <td>{customerDetails?.name}</td>
+                                        <td>{customerDetails?.phone}</td>
+                                        <td>{customerDetails?.fax}</td>
+                                        <td>{customerDetails?.address}</td>
+                                        <td>{customerDetails?.city}</td>
+                                        <td>{customerDetails?.country}</td>
+                                        <td>{customerDetails?.state}</td>
+                                        <td>{customerDetails?.postalCode}</td>
 
                                     </tr>
                                     </tbody>
@@ -101,19 +100,19 @@ const InvoiceDetails = () => {
                                         <th>Address</th>
                                         <th>City</th>
                                         <th>State</th>
-                                        <th>Postal Code</th>
+                                        <th>Post Code</th>
                                         <th>Country</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>{shippingName}</td>
-                                        <td>{shippingPhone}</td>
-                                        <td>{shippingAddress}</td>
-                                        <td>{shippingCity}</td>
-                                        <td>{shippingState}</td>
-                                        <td>{shippingPostalCode}</td>
-                                        <td>{shippingCountry}</td>
+                                        <td>{shippingDetails?.shippingName}</td>
+                                        <td>{shippingDetails?.shippingPhone}</td>
+                                        <td>{shippingDetails?.shippingAddress}</td>
+                                        <td>{shippingDetails?.shippingCity}</td>
+                                        <td>{shippingDetails?.shippingState}</td>
+                                        <td>{shippingDetails?.shippingPostalCode}</td>
+                                        <td>{shippingDetails?.shippingCountry}</td>
                                     </tr>
                                     </tbody>
                                 </table>

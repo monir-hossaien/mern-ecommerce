@@ -2,10 +2,11 @@ import React from 'react';
 import {productStore} from "../../store/productStore.js";
 import StarRatings from "react-star-ratings/build/star-ratings.js";
 import ReviewSkeleton from "../../Skeleton/reviewSkeleton.jsx";
-import {formatDate, TimestampToDate} from "../../Utility/helper.js";
+import {TimestampToDate} from "../../Utility/helper.js";
 
 const Review = () => {
     const {reviewList} = productStore();
+
     if(reviewList === null ){
         return (
             <ReviewSkeleton/>

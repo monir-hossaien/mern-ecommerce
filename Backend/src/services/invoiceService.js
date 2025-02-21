@@ -72,8 +72,27 @@ export const createInvoiceService = async (req) => {
 
         // ...................Customer  & shipping details..........
         let profile = await UserProfile.aggregate([matchStage]);
-        let customerDetails = `Customer name: ${profile[0].name}, Email: ${user_email}, Address: ${profile[0].address}, Country: ${profile[0].country}, Phone: ${profile[0].phone}`
-        let shippingDetails = `shippingType: ${profile[0].shippingName}, shippingAddress: ${profile[0].shippingAddress}, shippingCity: ${profile[0].shippingCity}, shippingCountry: ${profile[0].shippingCountry}, shippingPhone: ${profile[0].shippingPhone}`
+
+        let customerDetails = {
+            name: profile[0].name,
+            email: user_email,
+            address: profile[0].address,
+            country: profile[0].country,
+            phone: profile[0].phone,
+            city: profile[0].city,
+            fax: profile[0].fax,
+            postalCode: profile[0].postalCode,
+            state: profile[0].state,
+        }
+        let shippingDetails = {
+            shippingName: profile[0].shippingName,
+            shippingAddress: profile[0].shippingAddress,
+            shippingCity: profile[0].shippingCity,
+            shippingCountry: profile[0].shippingCountry,
+            shippingPhone: profile[0].shippingPhone,
+            shippingPostalCode: profile[0].shippingPostalCode,
+            shippingState: profile[0].shippingState,
+        }
 
         // ...................Transaction ID & Others ID..........
         let randomString = crypto.randomBytes(5).toString('hex');
@@ -136,11 +155,11 @@ export const createInvoiceService = async (req) => {
         form.append('ship_country', profile[0].shippingCountry);
         //Product Information
         let product = await Product.aggregate([
-            {$lookup:{from: "categories", localField: "categoryId", foreignField: "_id", as: "Category"}},
-            {$unwind: "$Category"}
+            {$lookup:{from: "categories", localField: "categoryId", foreignField: "_id", as: "category"}},
+            {$unwind: "$category"}
         ])
         form.append('product_name', product[0].title);
-        form.append('product_category', product[0]['Category']['categoryName']);
+        form.append('product_category', product[0]['category']['categoryName']);
         form.append('product_profile', product[0].title);
         form.append('product_amount', payable);
 
@@ -165,7 +184,7 @@ export const createInvoiceService = async (req) => {
 export const paymentSuccessService = async (req) => {
     try {
         const transactionId = req.params.transactionId;
-        await InvoiceModel.updateOne({transactionId: transactionId}, {$set:{paymentStatus: 'SUCCESS'}})
+        await InvoiceModel.updateOne({transactionId: transactionId}, {$set:{paymentStatus: 'Success'}})
         return {
             status: "success",
         }
@@ -181,7 +200,7 @@ export const paymentSuccessService = async (req) => {
 export const paymentCancelService = async (req) => {
     try {
         const transactionId = req.params.transactionId;
-        await InvoiceModel.updateOne({transactionId: transactionId}, {$set:{paymentStatus: 'CANCELED'}})
+        await InvoiceModel.updateOne({transactionId: transactionId}, {$set:{paymentStatus: 'Cancelled'}})
         return {
             status: "cancel",
         }
@@ -197,7 +216,7 @@ export const paymentCancelService = async (req) => {
 export const paymentFailService = async (req) => {
     try {
         const transactionId = req.params.transactionId;
-        await InvoiceModel.updateOne({transactionId: transactionId}, {$set:{paymentStatus: 'FAILED'}})
+        await InvoiceModel.updateOne({transactionId: transactionId}, {$set:{paymentStatus: 'Failed'}})
         return {
             status: "fail",
         }
@@ -230,6 +249,7 @@ export const paymentIPNService = async (req) => {
 export const invoiceListService = async (req) => {
     try {
         const userId = new objID(req.headers.id);
+
         let data = await InvoiceModel.find({userId: userId});
         if(!data){
             return {
@@ -241,14 +261,14 @@ export const invoiceListService = async (req) => {
         return {
             statusCode: 200,
             status: "success",
-            message: "Invoice list retrieved successfully",
+            message: "Request success",
             data: data
         }
     }catch (e) {
         return {
             statusCode: 500,
             status: "fail",
-            message: "Internal server error",
+            message: "Something went wrong!",
             error: e.message
         }
     }
@@ -260,20 +280,30 @@ export const invoiceProductsListService = async (req) => {
         const invoiceId = new objID(req.params.invoiceId);
 
         const matchStage = {$match: { userId: userId, invoiceId: invoiceId }};
+        // join with product collection
         const joinWithProducts = {
             $lookup: {
                 from: "products",
                 localField: "productId",
                 foreignField: "_id",
-                as: "Product",
+                as: "product",
             },
         }
-        const unwindStage = {$unwind: "$Product"}
-
+        // join with invoice collection
+        const joinWithInvoice = {
+            $lookup: {
+                from: "invoices",
+                localField: "invoiceId",
+                foreignField: "_id",
+                as: "invoice",
+            }
+        }
         const pipeline = [
             matchStage,
             joinWithProducts,
-            unwindStage
+            {$unwind: "$product"},
+            joinWithInvoice,
+            {$unwind: "$invoice"},
         ]
         let data = await InvoiceProductModel.aggregate(pipeline);
         if(!data){
@@ -286,14 +316,14 @@ export const invoiceProductsListService = async (req) => {
         return {
             statusCode: 200,
             status: "success",
-            message: "Invoice Products list retrieved successfully",
+            message: "Request success",
             data: data
         }
     }catch (e) {
         return {
             statusCode: 500,
             status: "fail",
-            message: "Internal server error",
+            message: "Something went wrong!",
             error: e.message
         }
     }

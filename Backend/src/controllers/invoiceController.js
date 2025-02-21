@@ -26,18 +26,18 @@ export const createInvoice = async(req, res)=>{
 
 // payment related
 export const paymentSuccess = async(req, res)=>{
-    const result = await paymentSuccessService(req);
-    return res.json(result);
+    await paymentSuccessService(req);
+    res.redirect("http://localhost:5173/my-orders")
 }
 
 export const paymentCancel = async(req, res)=>{
-    const result = await paymentCancelService(req);
-    return res.json(result);
+    await paymentCancelService(req);
+    res.redirect("http://localhost:5173/my-orders")
 }
 
 export const paymentFail = async(req, res)=>{
-    const result = await paymentFailService(req);
-    return res.json(result);
+    await paymentFailService(req);
+    res.redirect("http://localhost:5173/my-orders")
 }
 
 export const paymentIPN = async(req, res)=>{

@@ -50,11 +50,11 @@ const InvoiceList = () => {
                         <tbody>
                         {
                             invoiceList.map((invoice, i) =>{
-                                const {_id, transactionId, customer, paymentStatus, total, vat, payable, deliveryStatus} = invoice;
+                                const {_id, transactionId, customerDetails, paymentStatus, total, vat, payable, deliveryStatus} = invoice;
                                 return (
                                     <tr key={i}>
                                         <td className="fw-semibold">{transactionId}</td>
-                                        <td>{customer.name}</td>
+                                        <td>{customerDetails?.name}</td>
                                         <td className="text-center">
                                             <span
                                                 className={`badge ${paymentStatusColor(paymentStatus)}`}>{paymentStatus}</span>
