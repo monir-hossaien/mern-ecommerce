@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import {EMAIL_HOST, EMAIL_PASS, EMAIL_PORT, EMAIL_USER} from "../../src/config/config.js";
 
-const SendEmail = async(email, subject, text)=>{
+const SendEmail = async(email, subject, emailBody)=>{
 
 
     let transporter = nodemailer.createTransport({
@@ -21,7 +21,7 @@ const SendEmail = async(email, subject, text)=>{
         from: "monirhdigital@gmail.com",
         to: email,
         subject,
-        text
+        html: emailBody
     }
 
 

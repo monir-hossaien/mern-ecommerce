@@ -43,9 +43,16 @@ const Profile = () => {
             else{
                 setSubmit(true)
                 const res = await saveProfile(formData);
-                res ? successToast(res?.message) : errorToast(res?.message);
-                setSubmit(false)
-                await getProfileDetails()
+                if(res.status === "success"){
+                    setSubmit(false)
+                    successToast(res?.message)
+                    await getProfileDetails()
+                }
+                else{
+                    setSubmit(false)
+                    errorToast(res?.message)
+                }
+
             }
         }catch (error) {
             errorToast(error?.response?.data?.message);

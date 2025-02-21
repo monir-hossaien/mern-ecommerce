@@ -11,6 +11,7 @@ import * as remarkController from "../src/controllers/remarkController.js"
 
 //import auth middleware
 import {authenticateUser} from "../src/middleware/authMiddleware.js";
+import {upload} from "../src/Helpers/helper.js";
 
 
 
@@ -39,7 +40,7 @@ router.get("/productReviewList/:productId", authenticateUser, productController.
 
 
 // user related api
-router.post("/register", userController.userRegistration);
+router.post("/register", upload.single("profileImage"), userController.userRegistration);
 router.post("/login", userController.login);
 router.get("/logout", authenticateUser, userController.logout);
 router.post("/send-otp", userController.emailSent);

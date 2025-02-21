@@ -15,7 +15,6 @@ const CustomNavbar = () => {
     const { cartCount, getCartList } = cartStore();
     const { wishCount, getWishList } = wishStore();
 
-
     useEffect(() => {
         (async ()=>{
             if (isLogin()) {
@@ -158,7 +157,7 @@ const CustomNavbar = () => {
                                 <NavDropdown
                                     title={
                                         <span className="d-flex align-items-center">
-                                        <img src={profile?.user?.profileImage || "https://via.placeholder.com/28"} alt="User"
+                                        <img src={profile?.user?.profileImage || "images/default-avatar.png"} alt="user"
                                              style={{width: "28px", height: "28px", borderRadius: "50%"}}/>
                                     </span>
                                     }

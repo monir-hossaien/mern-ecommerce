@@ -5,25 +5,27 @@ import mongoose from "mongoose";
 import UserProfile from "../models/user/profileModel.js";
 import User from "../models/user/userModel.js";
 import ProductReview from "../models/product/reviewModel.js";
+import {emailData} from "../Helpers/emailTamplate.js";
 
 // user registration service
 export const registerService = async (req)=>{
     try {
         const reqBody = req.body;
+        if(req.file){
+            reqBody.profileImage = req.file?.path ||"";
+        }
         const user = await User.create(reqBody);
-
-        if(user === null || user === undefined){
+        if(!user){
             return{
-                statusCode: 401,
+                statusCode: 400,
                 status: "fail",
-                message: "User not Created"
+                message: "Request failed."
             }
         }
         return {
             statusCode: 201,
             status: "success",
-            message: "User created",
-            data: user
+            message: "Request success",
         }
     }
     catch (e) {
@@ -52,8 +54,8 @@ export const emailVerifyService = async (req)=>{
 
             //otp send to email
             const subject = "Your OTP Verification Code";
-            const text = `Your 6-digit OTP is ${updateOTP}. It is valid for 5 minutes.`;
-            await SendEmail(user_email, subject, text);
+            const emailBody = emailData(user.name, updateOTP);
+            await SendEmail(user_email, subject, emailBody);
 
             return {
                 statusCode: 200,
@@ -77,7 +79,6 @@ export const loginService = async (req)=>{
     try {
         const {email, otp} = req.body;
         const user = await User.findOne({email: email, otp: otp});
-
         if (!user) {
             return {statusCode: 404, status: "fail", message: "Invalid email or OTP"};
         }
@@ -87,6 +88,7 @@ export const loginService = async (req)=>{
         }
         else{
             const token = await createToken(user['email'], user['_id']);
+            await User.updateOne({email}, {$set:{otp: null}});
             return{
                 statusCode: 200,
                 status: "success",
@@ -117,15 +119,15 @@ export const saveProfileService = async (req)=>{
         const data = await UserProfile.updateOne({userId: userId}, {$set:reqBody}, {upsert: true})
         if(!data){
             return {
-                statusCode: 404,
+                statusCode: 400,
                 status: "fail",
-                message: "User not found"
+                message: "Request failed"
             };
         }
         return {
-            statusCode: 200,
+            statusCode: 201,
             status: "success",
-            message: "Save sucessfully"
+            message: "Save successfully"
         }
 
 
@@ -133,7 +135,7 @@ export const saveProfileService = async (req)=>{
         return {
             statusCode: 500,
             status: "fail",
-            message: "fail to create profile",
+            message: "Something went wrong!",
             error: e.message
         }
     }
@@ -143,23 +145,43 @@ export const saveProfileService = async (req)=>{
 // user profile read service
 export const readProfileService = async (req)=>{
    try {
-       const userId = req.headers.id;
-       const user = await UserProfile.find({userId: userId});
+       const userId = new mongoose.Types.ObjectId(req.headers.id);
 
-       if(user === null || user === undefined){
-           return {statusCode: 404, status: "fail", message: "User not found"};
+       const matchStage = {
+           $match:{userId: userId}
+       }
+       //join with user collection
+       const joinWithUser = {
+           $lookup: {
+               from: "users",
+               localField: "userId",
+               foreignField: "_id",
+               as: "user",
+           }
+       }
+       const pipeline = [
+           matchStage,
+           joinWithUser,
+           {
+               $unwind: "$user",
+           }
+       ]
+
+       const user = await UserProfile.aggregate(pipeline);
+       if(!user){
+           return {statusCode: 400, status: "fail", message: "User not found"};
        }
        return {
            statusCode: 200,
            status: "success",
-           message: "User Profile read successfully",
-           data: user
+           message: "Request success",
+           data: user[0]
        }
    }catch (e) {
        return {
            statusCode: 500,
            status: "fail",
-           message: "Internal server Error",
+           message: "Something went wrong!",
            error: e.message
        }
    }

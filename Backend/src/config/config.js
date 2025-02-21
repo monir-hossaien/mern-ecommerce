@@ -26,5 +26,8 @@ export const generateOTPExpireTime = () => new Date(Date.now() + 5 * 60 * 1000);
 
 //cookie expire time
 export const COOKIE_EXPIRE_TIME =  24 * 60 * 60 * 1000 // Cookie expires in 24 hours
-//user create password hashing
-export const saltRounds = 10;
+
+//cloudinary setup
+export const cloud_name = "dw0ojh7h8"
+export const api_key = "245476432579572"
+export const api_secret = "O9y9N826Y4QMofcNCjrlYvyPrv4"
