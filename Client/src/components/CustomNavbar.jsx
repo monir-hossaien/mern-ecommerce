@@ -156,8 +156,8 @@ const CustomNavbar = () => {
                             {isLogin() ? (
                                 <NavDropdown
                                     title={
-                                        <span className="d-flex align-items-center">
-                                        <img src={profile?.user?.profileImage || "images/default-avatar.png"} alt="user"
+                                        <span className="d-flex align-items-center border border-secondary-subtle rounded-circle">
+                                        <img className="" src={profile?.user?.profileImage || "images/default-avatar.png"} alt="user"
                                              style={{width: "28px", height: "28px", borderRadius: "50%"}}/>
                                     </span>
                                     }
