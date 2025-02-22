@@ -32,9 +32,9 @@ export const cartStore = create((set)=>({
         }
     },
     // update cart
-    updateCartRequest: async (productId, formData)=>{
+    updateCartRequest: async (cartId, formData)=>{
         try {
-            let res = await axios.put(`/api/update-cart/${productId}`, formData, {withCredentials: true});
+            let res = await axios.put(`/api/update-cart/${cartId}`, formData, {withCredentials: true});
             const data = res?.data
             return data
         }catch (err) {

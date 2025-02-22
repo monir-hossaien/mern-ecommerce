@@ -70,5 +70,12 @@ export const userStore = create((set)=>({
         }catch(err){
             unauthorized(err?.response?.status)
         }
+    },
+
+    // registration
+    signUpRequest: async (formData)=>{
+        let res = await axios.post(`/api/register`, formData)
+        const data = res.data
+        return data
     }
 }))

@@ -73,7 +73,7 @@ const Profile = () => {
                                             className="position-relative mx-auto w-36 rounded-circle d-flex justify-content-center align-items-center">
                                             <span
                                                 className="position-absolute end-0 m-3 h-3 w-3 rounded-circle bg-success"></span>
-                                            <img className="mx-auto img-fluid rounded-circle w-50"
+                                            <img className="mx-auto img-fluid rounded-circle w-50 border border-secondary-subtle"
                                                  src={profile?.user?.profileImage || "images/default-avatar.png"}
                                                  alt="profile image"/>
                                         </div>

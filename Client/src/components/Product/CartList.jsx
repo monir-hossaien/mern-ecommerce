@@ -21,7 +21,6 @@ const CartList = () => {
         discountAmount,
     } = cartStore();
 
-    const [selectedItem, setSelectedItem] = useState(null);
     const { createWishRequest, getWishList } = wishStore();
     const { createInvoice } = invoiceStore();
 
@@ -31,19 +30,19 @@ const CartList = () => {
         })();
     }, []);
 
-    const increment = async (productId, quantity) => {
+    const increment = async (_id, quantity) => {
         try {
-            let res = await updateCartRequest(productId, { quantity: parseInt(quantity) + 1 });
+            let res = await updateCartRequest(_id, { quantity: parseInt(quantity) + 1 });
             res.status === "success" && (await getCartList());
         } catch (err) {
             errorToast(err?.response?.data?.message);
         }
     };
 
-    const decrement = async (productId, quantity) => {
+    const decrement = async (_id, quantity) => {
         try {
             if (quantity > 1) {
-                let res = await updateCartRequest(productId, { quantity: parseInt(quantity) - 1 });
+                let res = await updateCartRequest(_id, { quantity: parseInt(quantity) - 1 });
                 res.status === "success" && (await getCartList());
             }
         } catch (err) {
@@ -107,8 +106,8 @@ const CartList = () => {
                     {/* Cart Items */}
                     <div className="col-lg-8 col-md-7 col-sm-12">
                         {cartItem.map((item, i) => {
-                            let { quantity, product, color, size } = item;
-                            let { price, productImg, title, shortDescription, _id } = product;
+                            let { quantity, product, color, size, productId, _id} = item;
+                            let { price, productImg, title, shortDescription} = product;
                             return (
                                 <div key={i} className="cart-item card p-3 mb-3 rounded shadow-sm">
                                     <div className="row align-items-center">
@@ -146,11 +145,11 @@ const CartList = () => {
                                         {/* Remove & Wishlist Buttons */}
                                         <div className="col-md-1 col-12 text-center">
                                             <div className="d-flex flex-lg-column gap-2 justify-content-center">
-                                                <button onClick={() => removeCart(item?._id)}
+                                                <button onClick={() => removeCart(_id)}
                                                         className="btn btn-danger btn-sm">
                                                     <i className="bi bi-trash"></i>
                                                 </button>
-                                                <button onClick={() => addToWishList(_id)}
+                                                <button onClick={() => addToWishList(productId)}
                                                         className="btn btn-light btn-sm">
                                                     <i className="bi bi-heart text-danger"></i>
                                                 </button>

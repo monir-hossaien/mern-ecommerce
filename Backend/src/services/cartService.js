@@ -47,24 +47,21 @@ export const addToCartService = async (req) => {
 
 export const updateCartService = async (req) => {
   try {
-    const userId = req.headers.id
-    const cartId = req.params.id;
+    const userId = new mongoose.Types.ObjectId(req.headers.id);
+    const cartId = new mongoose.Types.ObjectId(req.params.cartId);
     const reqBody = req.body;
-    
-
     const data = await CartModel.updateOne({_id: cartId, userId: userId}, {$set: reqBody});
-
-    if (data == null || data === undefined) {
+    if (!data) {
       return {
-        statusCode: 404,
+        statusCode: 400,
         status: "fail",
-        message: "Cart not updated",
+        message: "Request failed",
       };
     }
     return {
       statusCode: 200,
       status: "success",
-      message: "Cart updated successfully"
+      message: "Request success",
     };
   } catch (e) {
     return {

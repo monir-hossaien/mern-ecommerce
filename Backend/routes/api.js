@@ -57,7 +57,7 @@ router.delete("/delete-wish/:productId", authenticateUser, wishController.delete
 
 // product cart api
 router.post("/add-cart/:productId", authenticateUser, cartController.addToCart);
-router.put("/update-cart/:id", authenticateUser, cartController.updateCart);
+router.put("/update-cart/:cartId", authenticateUser, cartController.updateCart);
 router.delete("/delete-cart/:cartId", authenticateUser, cartController.deleteCart);
 router.get("/cart-list", authenticateUser, cartController.cartList);
 

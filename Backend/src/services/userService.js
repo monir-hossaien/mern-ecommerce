@@ -14,12 +14,21 @@ export const registerService = async (req)=>{
         if(req.file){
             reqBody.profileImage = req.file?.path ||"";
         }
+        //check user exit or not
+        const existingUser = await User.findOne({email: reqBody.email})
+        if(existingUser){
+            return{
+                statusCode: 400,
+                status: "fail",
+                message: "User already exists"
+            }
+        }
         const user = await User.create(reqBody);
         if(!user){
             return{
                 statusCode: 400,
                 status: "fail",
-                message: "Request failed."
+                message: "Request failed"
             }
         }
         return {
