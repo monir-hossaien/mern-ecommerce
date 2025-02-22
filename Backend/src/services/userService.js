@@ -52,7 +52,7 @@ export const emailVerifyService = async (req)=>{
     try {
         const user_email = req.body.email;
         const user = await User.findOne({email: user_email});
-
+        const profile = await UserProfile.findOne().select("name")
         if (!user) {
             return {statusCode: 404, status: "fail", message: "User not found"};
         }
@@ -63,7 +63,7 @@ export const emailVerifyService = async (req)=>{
 
             //otp send to email
             const subject = "Your OTP Verification Code";
-            const emailBody = emailData(user.name, updateOTP);
+            const emailBody = emailData(profile.name, updateOTP);
             await SendEmail(user_email, subject, emailBody);
 
             return {
@@ -155,36 +155,12 @@ export const saveProfileService = async (req)=>{
 export const readProfileService = async (req)=>{
    try {
        const userId = new mongoose.Types.ObjectId(req.headers.id);
-
-       const matchStage = {
-           $match:{userId: userId}
-       }
-       //join with user collection
-       const joinWithUser = {
-           $lookup: {
-               from: "users",
-               localField: "userId",
-               foreignField: "_id",
-               as: "user",
-           }
-       }
-       const pipeline = [
-           matchStage,
-           joinWithUser,
-           {
-               $unwind: "$user",
-           }
-       ]
-
-       const user = await UserProfile.aggregate(pipeline);
-       if(!user){
-           return {statusCode: 400, status: "fail", message: "User not found"};
-       }
+       const profile = await UserProfile.findOne({userId: userId});
        return {
            statusCode: 200,
            status: "success",
            message: "Request success",
-           data: user[0]
+           data: profile
        }
    }catch (e) {
        return {
@@ -196,6 +172,29 @@ export const readProfileService = async (req)=>{
    }
 }
 
+//user details
+export const readUserService = async (req)=>{
+    try {
+        const userId = new mongoose.Types.ObjectId(req.headers.id);
+        const user = await User.findOne({_id: userId});
+        if(user === null || user === undefined){
+            return {statusCode: 400, status: "fail", message: "User not found"};
+        }
+        return {
+            statusCode: 200,
+            status: "success",
+            message: "Request success",
+            data: user
+        }
+    }catch (e) {
+        return {
+            statusCode: 500,
+            status: "fail",
+            message: "Something went wrong!",
+            error: e.message
+        }
+    }
+}
 //create product review service
 export const createReviewService = async (req)=>{
     try {

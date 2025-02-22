@@ -11,7 +11,7 @@ import logo from "../assets/images/plainb-logo.svg";
 const CustomNavbar = () => {
     const navigate = useNavigate();
     const { search, setSearch } = productStore();
-    const { isLogin, logout, profile, getProfileDetails } = userStore();
+    const { isLogin, logout, profile, getProfileDetails, getUserDetails, user } = userStore();
     const { cartCount, getCartList } = cartStore();
     const { wishCount, getWishList } = wishStore();
 
@@ -19,6 +19,7 @@ const CustomNavbar = () => {
         (async ()=>{
             if (isLogin()) {
                 await getProfileDetails();
+                await getUserDetails();
                 await getCartList();
                 await getWishList();
             }
@@ -157,7 +158,7 @@ const CustomNavbar = () => {
                                 <NavDropdown
                                     title={
                                         <span className="d-flex align-items-center">
-                                        <img className="border border-secondary-subtle" src={profile?.user?.profileImage || "images/default-avatar.png"} alt="user"
+                                        <img className="border border-secondary-subtle" src={user?.profileImage || "images/default-avatar.png"} alt="user"
                                              style={{width: "28px", height: "28px", borderRadius: "50%"}}/>
                                     </span>
                                     }
@@ -166,7 +167,7 @@ const CustomNavbar = () => {
                                 >
                                     <NavDropdown.Item disabled>{profile?.name || "Guest"}</NavDropdown.Item>
                                     <NavDropdown.Item
-                                        disabled>{profile?.user?.email || "guest@gmail.com"}</NavDropdown.Item>
+                                        disabled>{user?.email || "guest@gmail.com"}</NavDropdown.Item>
                                     <NavDropdown.Divider/>
                                     <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
                                     <NavDropdown.Item as={Link} to="/my-orders">My Orders</NavDropdown.Item>

@@ -3,7 +3,7 @@ import {
     saveProfileService,
     emailVerifyService,
     loginService, readProfileService,
-    registerService
+    registerService, readUserService
 } from "../../src/services/userService.js"
 
 import {COOKIE_EXPIRE_TIME} from "../config/config.js";
@@ -83,6 +83,11 @@ export const readProfile = async (req, res) => {
     return res.status(result.statusCode).json(result);
 }
 
+//read user
+export const readUser = async (req, res) => {
+    const result = await readUserService(req);
+    return res.status(result.statusCode).json(result);
+}
 
 //create product review
 export const createReview = async (req, res) => {

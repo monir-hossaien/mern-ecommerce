@@ -2,10 +2,10 @@ import cookies from "js-cookie";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 // Format date to 'day-month-year'
-export const formatDate = (dateString) => {
-    const options = { timeZone: 'Asia/Dhaka', day: '2-digit', month: '2-digit', year: 'numeric' };
-    return new Intl.DateTimeFormat('en-GB', options).format(new Date(dateString));
-};
+// export const formatDate = (dateString) => {
+//     const options = { timeZone: 'Asia/Dhaka', day: '2-digit', month: '2-digit', year: 'numeric' };
+//     return new Intl.DateTimeFormat('en-GB', options).format(new Date(dateString));
+// };
 
 // success toast
 export const successToast = (message) => {

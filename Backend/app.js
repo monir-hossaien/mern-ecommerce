@@ -19,8 +19,8 @@ app.use(cookieParser());
 
 
 //app use limiter setup
-const limiter = rateLimit({windowMs:REQUEST_TIME,max:REQUEST_NUMBER});
-app.use(limiter);
+// const limiter = rateLimit({windowMs:REQUEST_TIME,max:REQUEST_NUMBER});
+// app.use(limiter);
 
 // Cache
 app.set('etag',WEB_CACHE)

@@ -48,6 +48,7 @@ router.post("/create-profile", authenticateUser, userController.createProfile);
 router.post("/update-profile", authenticateUser, userController.updateProfile);
 router.post("/create-review/:productId", authenticateUser, userController.createReview);
 router.get("/read-profile", authenticateUser, userController.readProfile);
+router.get("/read-user", authenticateUser, userController.readUser);
 
 
 //wishes api

@@ -15,7 +15,11 @@ export const userStore = create((set)=>({
         set({isSubmit: boolean})
     },
     //form onchange
-    formData: {},
+    formData: {
+        email: "", otp: "",
+        name: "", phone: "", country: "", city: "", address: "", shippingName: "",
+        shippingPhone: "", shippingCountry: "", shippingCity: "", shippingAddress: ""
+    },
     inputOnchange: (name, value)=>{
         set((state)=>({
             formData:{
@@ -23,6 +27,12 @@ export const userStore = create((set)=>({
                 [name]: value
             }
         }))
+    },
+    // registration
+    signUpRequest: async (formData)=>{
+        let res = await axios.post(`/api/register`, formData)
+        const data = res.data
+        return data
     }
     ,
     // send otp request
@@ -45,6 +55,17 @@ export const userStore = create((set)=>({
         return data
     },
 
+    //create or update profile
+    saveProfile: async (formData)=>{
+        try {
+            const res = await axios.post(`/api/create-profile`, formData, {withCredentials: true})
+            const data = res.data
+            return data
+        }catch(err){
+            unauthorized(err?.response?.status)
+        }
+    },
+
     // get profile details
     profile: null,
     getProfileDetails: async ()=>{
@@ -61,21 +82,17 @@ export const userStore = create((set)=>({
         }
     },
 
-    saveProfile: async (formData)=>{
+    // get profile details
+    user: null,
+    getUserDetails: async ()=>{
         try {
-            set({formData: null})
-            const res = await axios.post(`/api/create-profile`, formData, {withCredentials: true})
-            const data = res.data
-            return data
+            const res = await axios.get(`/api/read-user`, {withCredentials: true})
+            const data = res.data.data
+            if(res.data.status === "success"){
+                set({user: data})
+            }
         }catch(err){
             unauthorized(err?.response?.status)
         }
-    },
-
-    // registration
-    signUpRequest: async (formData)=>{
-        let res = await axios.post(`/api/register`, formData)
-        const data = res.data
-        return data
     }
 }))

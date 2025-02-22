@@ -6,8 +6,14 @@ import UserButton from "./UserButton.jsx";
 import validation from "../../Utility/validation.js";
 
 const Profile = () => {
-    const {profile, formData, inputOnchange, saveProfile,getProfileDetails, setSubmit} = userStore();
+    const {formData, isLogin, profile, inputOnchange, saveProfile,getProfileDetails, setSubmit, user, getUserDetails} = userStore();
 
+    useEffect(()=>{
+        (async ()=>{
+            isLogin() &&
+                await getUserDetails()
+        })()
+    },[])
 
     const handleChange = async () => {
         try {
@@ -63,7 +69,7 @@ const Profile = () => {
     return (
         <>
             {
-                profile === null ? (<ProfileSkeleton/>): (
+                user === null ? (<ProfileSkeleton/>): (
                     <div className="section">
                         <div className="container">
                             <div className="row">
@@ -74,22 +80,22 @@ const Profile = () => {
                                             <span
                                                 className="position-absolute end-0 m-3 h-3 w-3 rounded-circle bg-success"></span>
                                             <img className="mx-auto img-fluid rounded-circle w-50 border border-secondary-subtle"
-                                                 src={profile?.user?.profileImage || "images/default-avatar.png"}
+                                                 src={user?.profileImage || "images/default-avatar.png"}
                                                  alt="profile image"/>
                                         </div>
                                         <h1 className="my-1 text-center fs-5 font-weight-bold">{profile?.name || "Guest"}</h1>
-                                        <p className="text-center small font-weight-bold">{profile?.user?.email || "guest@gmail.com"}</p>
+                                        <p className="text-center small font-weight-bold">{user?.email || "guest@gmail.com"}</p>
                                         <ul className="mt-3 list-group rounded bg-light py-4 px-3 text-muted shadow-sm">
                                             <li className="list-group-item d-flex justify-content-between py-3 small">
                                                 <span>Status</span>
                                                 <span><span
                                                     className="rounded bg-success py-1 px-2 small font-weight-medium text-white">{
-                                                    profile?.user?.isActive === true ? "Active" : "In active"
+                                                    user?.isActive === true ? "Active" : "In active"
                                                 }</span></span>
                                             </li>
                                             <li className="list-group-item d-flex justify-content-between py-3 small">
                                                 <span>Joined On</span>
-                                                <span>{TimestampToDate(profile?.user?.createdAt)}</span>
+                                                <span>{TimestampToDate(user?.createdAt)}</span>
                                             </li>
                                         </ul>
                                     </div>
