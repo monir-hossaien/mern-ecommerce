@@ -6,19 +6,11 @@ import {getEmail, setEmail, unauthorized} from "../Utility/helper.js";
 
 export const userStore = create((set)=>({
 
-    isLogin:()=>{
-        return !!cookies.get('token');
-    },
-
-    isSubmit: false,
-    setSubmit: (boolean)=>{
-        set({isSubmit: boolean})
-    },
     //form onchange
     formData: {
-        email: "", otp: "",
-        name: "", phone: "", country: "", city: "", address: "", shippingName: "",
-        shippingPhone: "", shippingCountry: "", shippingCity: "", shippingAddress: ""
+        name: "", division: "", district: "", post: "", area: "", phone: "", postalCode: "", shippingName: "",
+        shippingDivision: "", shippingDistrict: "", shippingPost: "",  shippingArea: "", shippingPhone: "", shippingPostalCode: "",
+        email: "", otp: ""
     },
     inputOnchange: (name, value)=>{
         set((state)=>({
@@ -28,9 +20,18 @@ export const userStore = create((set)=>({
             }
         }))
     },
+    isLogin:()=>{
+        return !!cookies.get('token');
+    },
+
+    isSubmit: false,
+    setSubmit: (boolean)=>{
+        set({isSubmit: boolean})
+    },
     // registration
     signUpRequest: async (formData)=>{
         let res = await axios.post(`/api/register`, formData)
+        set({formData: {email: ""}})
         const data = res.data
         return data
     }
@@ -38,6 +39,7 @@ export const userStore = create((set)=>({
     // send otp request
     sentOTPRequest: async (email) =>{
         const res = await axios.post(`/api/send-otp`, {email});
+        set({formData: {otp: ""}})
         const data = res?.data
         return data
     },
@@ -45,6 +47,7 @@ export const userStore = create((set)=>({
     OTPVerifyRequest: async (otp) =>{
         const email = getEmail()
         const res = await axios.post(`/api/login`, {email: email, otp: otp}, {withCredentials: true})
+        set({formData: {email: ""}})
         const data = res?.data
         return data
     },
@@ -59,6 +62,15 @@ export const userStore = create((set)=>({
     saveProfile: async (formData)=>{
         try {
             const res = await axios.post(`/api/create-profile`, formData, {withCredentials: true})
+            if (res.data.status === "success") {
+                set({
+                    formData: {
+                        name: "", division: "", district: "", post: "", area: "", phone: "", shippingName: "",
+                        shippingDivision: "", shippingDistrict: "", shippingPost: "",  shippingArea: "", shippingPhone: "",
+                        email: "", otp: "", shippingPostalCode: "", postalCode: ""
+                    }
+                });
+            }
             const data = res.data
             return data
         }catch(err){
@@ -78,7 +90,6 @@ export const userStore = create((set)=>({
             }
         }catch(err){
             unauthorized(err?.response?.status)
-            set({formData: null})
         }
     },
 
@@ -94,5 +105,39 @@ export const userStore = create((set)=>({
         }catch(err){
             unauthorized(err?.response?.status)
         }
+    },
+
+    //get division list
+    divisionList: [],
+    getDivisionList: async ()=>{
+        try {
+            const res = await axios.get("/api/division-list")
+            set({divisionList: res.data.data})
+        }catch(err){
+            unauthorized(err?.response?.status)
+        }
+    },
+
+    //get division list
+    districtList: [],
+    getDistrictList: async (divisionID)=>{
+        try {
+            const res = await axios.get(`/api/district-list/${divisionID}`)
+            set({districtList: res.data.data || []})
+        }catch(err){
+            unauthorized(err?.response?.status)
+        }
+    },
+
+    //get post list
+    postList: [],
+    getPostList: async (districtID)=>{
+        try {
+            const res = await axios.get(`/api/post-list/${districtID}`)
+            set({postList: res.data.data || []})
+        }catch(err){
+            unauthorized(err?.response?.status)
+        }
     }
+
 }))

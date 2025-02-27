@@ -5,11 +5,13 @@ import { userStore } from "../../store/userStore.js";
 import UserButton from "./UserButton.jsx";
 import { errorToast, successToast } from "../../Utility/helper.js";
 import {useNavigate} from "react-router-dom";
+import validation from "../../Utility/validation.js";
 
 const SignUp = () => {
     const [image, setImage] = useState("images/default-avatar.png");
-    const { signUpRequest, formData, inputOnchange, setSubmit, resetForm } = userStore(); // Add resetForm
+    const { signUpRequest, formData, inputOnchange, setSubmit} = userStore(); // Add resetForm
     const navigate = useNavigate();
+
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -27,17 +29,21 @@ const SignUp = () => {
             const formBody = new FormData();
             formBody.append("email", formData.email);
             formBody.append("profileImage", formData.profileImage || "images/default-avatar.png");
-            setSubmit(true);
-            let res = await signUpRequest(formBody);
-            if (res.status === "success") {
-                // Reset image after successful submission
-                setImage("images/default-avatar.png");
-                setSubmit(false);
-                successToast(res?.message);
-                navigate("/login");
-            } else {
-                setSubmit(false);
-                errorToast(res?.message);
+            if(validation.IsEmpty(formData.email)) {
+                errorToast("Email must be required");
+            }else{
+                setSubmit(true);
+                let res = await signUpRequest(formBody);
+                if (res.status === "success") {
+                    // Reset image after successful submission
+                    setImage("images/default-avatar.png");
+                    setSubmit(false);
+                    successToast(res?.message);
+                    navigate("/login");
+                } else {
+                    setSubmit(false);
+                    errorToast(res?.message);
+                }
             }
         } catch (err) {
             setSubmit(false);

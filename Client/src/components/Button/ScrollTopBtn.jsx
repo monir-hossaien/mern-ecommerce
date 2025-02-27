@@ -20,7 +20,7 @@ const ScrollTopBtn = () => {
             className={`btn btn-success position-fixed translate-middle-x shadow ${
                 visible ? "d-block" : "d-none"
             }`}
-            style={{ zIndex: 1000, borderRadius: "50%", padding: "12px 15px", bottom: "3rem", right: "1rem" }}
+            style={{ zIndex: 1000, borderRadius: "10%", padding: "10px 12px", bottom: "3rem", right: "1rem" }}
         >
             <FaArrowUp size={20} />
         </button>

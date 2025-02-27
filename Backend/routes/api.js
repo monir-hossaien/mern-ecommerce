@@ -8,7 +8,7 @@ import * as featureController from "../src/controllers/featureController.js";
 import * as cartController from "../src/controllers/cartController.js";
 import * as invoiceController from "../src/controllers/invoiceController.js"
 import * as remarkController from "../src/controllers/remarkController.js"
-
+import * as locationController from "../src/controllers/locationController.js"
 //import auth middleware
 import {authenticateUser} from "../src/middleware/authMiddleware.js";
 import {upload} from "../src/Helpers/helper.js";
@@ -84,5 +84,17 @@ router.get("/legal-list", featureController.getLegalList);
 //remark api
 router.post("/create-remark", remarkController.createRemark);
 router.get("/remark-list", remarkController.remarkList);
+
+//location api
+router.post("/create-division", locationController.createDivision);
+router.get("/division-list", locationController.divisionList);
+
+router.post("/create-district/:divisionID", locationController.createDistrict);
+router.get("/district-list/:divisionID", locationController.districtList);
+
+router.post("/create-post/:districtID", locationController.createPost);
+router.get("/post-list/:districtID", locationController.postList);
+
+router.post("/create-union/:id", locationController.createUnion);
 
 export default router;

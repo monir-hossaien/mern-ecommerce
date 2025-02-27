@@ -63,7 +63,7 @@ export const emailVerifyService = async (req)=>{
 
             //otp send to email
             const subject = "Your OTP Verification Code";
-            const emailBody = emailData(profile.name, updateOTP);
+            const emailBody = emailData(profile?.name, updateOTP);
             await SendEmail(user_email, subject, emailBody);
 
             return {

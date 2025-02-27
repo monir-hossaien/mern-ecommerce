@@ -6,23 +6,19 @@ const DataSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    address: {
+    division: {
         type: String,
         required: true,
     },
-    city: {
+    district: {
         type: String,
         required: true,
     },
-    state: {
+    post: {
         type: String,
         required: true,
     },
-    postalCode: {
-        type: String,
-        required: true,
-    },
-    country: {
+    area: {
         type: String,
         required: true,
     },
@@ -30,37 +26,35 @@ const DataSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    fax: {
+    postalCode: {
         type: String,
-        required: true,
     },
     shippingName: {
         type: String,
         required: true,
     },
-    shippingAddress: {
+    shippingDivision: {
         type: String,
         required: true,
     },
-    shippingCity: {
+    shippingDistrict: {
         type: String,
         required: true,
     },
-    shippingState: {
+    shippingPost: {
         type: String,
         required: true,
     },
-    shippingPostalCode: {
-        type: String,
-        required: true,
-    },
-    shippingCountry: {
+    shippingArea: {
         type: String,
         required: true,
     },
     shippingPhone: {
         type: String,
         required: true,
+    },
+    shippingPostalCode: {
+        type: String,
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,

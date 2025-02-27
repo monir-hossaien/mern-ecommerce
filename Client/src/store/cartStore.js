@@ -25,6 +25,7 @@ export const cartStore = create((set)=>({
     createCartRequest: async (productID, formData)=>{
         try {
             const res = await axios.post(`/api/add-cart/${productID}`, formData, {withCredentials: true});
+            set({formData: {size: "", color: "", quantity: ""},})
             const data = res?.data
             return data
         }catch (err) {

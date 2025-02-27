@@ -7,6 +7,8 @@ import NoData from "./NoData.jsx";
 import { Link } from "react-router";
 import CartBtn from "../Button/CartBtn.jsx";
 import { invoiceStore } from "../../store/invoiceStore.js";
+import {userStore} from "../../store/userStore.js";
+import {useNavigate} from "react-router-dom";
 
 const CartList = () => {
     const {
@@ -20,13 +22,15 @@ const CartList = () => {
         payableAmount,
         discountAmount,
     } = cartStore();
-
+    const {profile, getProfileDetails, isLogin} = userStore();
     const { createWishRequest, getWishList } = wishStore();
     const { createInvoice } = invoiceStore();
-
+    const navigate = useNavigate();
     useEffect(() => {
         (async () => {
+            isLogin() &&
             await getCartList();
+            await getProfileDetails()
         })();
     }, []);
 
@@ -80,11 +84,17 @@ const CartList = () => {
 
     const InvoiceHandler = async () => {
         try {
-            setCartSubmit(true);
-            let res = await createInvoice();
-            if (res?.status === "success") {
-                setCartSubmit(false);
-                window.location.href = res?.data?.["GatewayPageURL"];
+            if(profile === null){
+                errorToast("Please complete your details")
+                navigate("/profile")
+            }
+            else{
+                setCartSubmit(true);
+                let res = await createInvoice();
+                if (res?.status === "success") {
+                    setCartSubmit(false);
+                    window.location.href = res?.data?.["GatewayPageURL"];
+                }
             }
         } catch (err) {
             errorToast(err?.response?.data?.message);

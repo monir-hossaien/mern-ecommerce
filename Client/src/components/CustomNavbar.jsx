@@ -7,6 +7,10 @@ import { cartStore } from "../store/cartStore.js";
 import { wishStore } from "../store/wishStore.js";
 import { errorToast, successToast } from "../Utility/helper.js";
 import logo from "../assets/images/plainb-logo.svg";
+import {CgProfile} from "react-icons/cg";
+import {IoBagCheck, IoHomeOutline} from "react-icons/io5";
+import {TbLogout2} from "react-icons/tb";
+import {FaShopify} from "react-icons/fa";
 
 const CustomNavbar = () => {
     const navigate = useNavigate();
@@ -67,7 +71,7 @@ const CustomNavbar = () => {
                     </div>
                 </div>
             </div>
-            <Navbar expand="lg" bg="white" variant="light" className="shadow-sm">
+            <Navbar expand="lg" bg="white" variant="light" className="shadow-sm" sticky={"top"}>
                 <Container>
                     {/* Logo */}
                     <Navbar.Brand as={Link} to="/">
@@ -104,12 +108,22 @@ const CustomNavbar = () => {
 
                     {/* Navbar Collapse */}
                     <Navbar.Collapse id="navbarNav">
-                        <Nav className="me-auto ms-lg-5 d-md-flex gap-md-4">
+                        <Nav className="me-auto ms-lg-5 d-md-flex gap-md-4 mt-2 mt-md-0">
                             <Nav.Link as={Link} to="/" className="fs-6">
-                                <i className="bi bi-house"></i> Home
+                                <div className="d-flex align-items-center gap-1">
+                                    <IoHomeOutline /> Home
+                                </div>
                             </Nav.Link>
                             <Nav.Link as={Link} to="/all-products" className="fs-6">
-                                <i className="bi bi-bag"></i> Collection
+                                <div className="d-flex  align-items-center gap-1">
+                                    <FaShopify /> Collection
+                                </div>
+                            </Nav.Link>
+                            <Nav.Link as={Link} to="/" className="fs-6">
+                                About
+                            </Nav.Link>
+                            <Nav.Link as={Link} to="/" className="fs-6">
+                                Contact
                             </Nav.Link>
                         </Nav>
 
@@ -155,28 +169,64 @@ const CustomNavbar = () => {
 
                             {/* Profile / Login Dropdown */}
                             {isLogin() ? (
-                                <NavDropdown
-                                    title={
-                                        <span className="d-flex align-items-center">
+                                <>
+                                    <NavDropdown
+                                        className="d-none d-lg-block"
+                                        title={
+                                            <span className="d-flex align-items-center">
                                         <img className="border border-secondary-subtle" src={user?.profileImage || "images/default-avatar.png"} alt="user"
                                              style={{width: "28px", height: "28px", borderRadius: "50%"}}/>
                                     </span>
-                                    }
-                                    id="basic-nav-dropdown"
-                                    align="end"
-                                >
-                                    <NavDropdown.Item disabled>{profile?.name || "Guest"}</NavDropdown.Item>
-                                    <NavDropdown.Item
-                                        disabled>{user?.email || "guest@gmail.com"}</NavDropdown.Item>
-                                    <NavDropdown.Divider/>
-                                    <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
-                                    <NavDropdown.Item as={Link} to="/my-orders">My Orders</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
-                                </NavDropdown>
+                                        }
+                                        id="basic-nav-dropdown"
+                                        align="end"
+                                    >
+                                        <NavDropdown.Item disabled>{profile?.name || "Guest"}</NavDropdown.Item>
+                                        <NavDropdown.Item
+                                            disabled>{user?.email || "guest@gmail.com"}</NavDropdown.Item>
+                                        <NavDropdown.Divider/>
+                                        <NavDropdown.Item as={Link} to="/profile">
+                                            <div className="d-flex align-items-center gap-1">
+                                                <CgProfile/> Profile
+                                            </div>
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item as={Link} to="/my-orders">
+                                            <div className="d-flex align-items-center gap-1">
+                                                <IoBagCheck/> My Orders
+                                            </div>
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item onClick={logoutHandler}>
+                                            <div className="d-flex  align-items-center gap-1">
+                                                <TbLogout2/> Logout
+                                            </div>
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+
+                                    {/*mobile device*/}
+                                    <Nav className="me-auto ms-lg-5 d-md-none d-lg-none gap-md-4">
+                                        <Nav.Link as={Link} to="/profile" className="fs-6">
+                                            <div className="d-flex align-items-center gap-1">
+                                                <CgProfile /> Profile
+                                            </div>
+                                        </Nav.Link>
+                                        <Nav.Link as={Link} to="/my-orders" className="fs-6">
+                                            <div className="d-flex align-items-center gap-1">
+                                                <IoBagCheck /> My Orders
+                                            </div>
+                                        </Nav.Link>
+                                        <Nav onClick={logoutHandler} className="fs-6">
+                                            <div className="d-flex  align-items-center gap-1">
+                                                <TbLogout2 /> Logout
+                                            </div>
+                                        </Nav>
+                                    </Nav>
+                                </>
 
                             ) : (
                                 <Nav.Link as={Link} to="/login" className="fs-6">
-                                    <i className="bi bi-person-fill me-1 fs-5"></i>Login
+                                    <div className="d-flex align-items-center gap-1">
+                                        <i className="bi bi-person-fill fs-5"></i>Login
+                                    </div>
                                 </Nav.Link>
                             )}
                         </Nav>

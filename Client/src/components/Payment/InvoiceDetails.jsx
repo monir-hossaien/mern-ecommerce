@@ -62,24 +62,22 @@ const InvoiceDetails = () => {
                                     <thead className="table-light">
                                     <tr>
                                         <th>Name</th>
-                                        <th>Phone</th>
-                                        <th>Fax</th>
-                                        <th>Address</th>
-                                        <th>City</th>
-                                        <th>Country</th>
-                                        <th>State</th>
+                                        <th>Division</th>
+                                        <th>District</th>
+                                        <th>Post</th>
+                                        <th>Area</th>
+                                        <th>Contact</th>
                                         <th>Post Code</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>{customerDetails?.name}</td>
+                                        <td>{customerDetails?.division}</td>
+                                        <td>{customerDetails?.district}</td>
+                                        <td>{customerDetails?.post}</td>
+                                        <td>{customerDetails?.area}</td>
                                         <td>{customerDetails?.phone}</td>
-                                        <td>{customerDetails?.fax}</td>
-                                        <td>{customerDetails?.address}</td>
-                                        <td>{customerDetails?.city}</td>
-                                        <td>{customerDetails?.country}</td>
-                                        <td>{customerDetails?.state}</td>
                                         <td>{customerDetails?.postalCode}</td>
 
                                     </tr>
@@ -95,24 +93,24 @@ const InvoiceDetails = () => {
                                 <table className="table table-bordered">
                                     <thead className="table-light">
                                     <tr>
-                                        <th>Recipient</th>
-                                        <th>Phone</th>
-                                        <th>Address</th>
-                                        <th>City</th>
-                                        <th>State</th>
+                                        <th>Recipient Name</th>
+                                        <th>Shipping Division</th>
+                                        <th>Shipping District</th>
+                                        <th>Shipping Post</th>
+                                        <th>Shipping Area</th>
+                                        <th>Shipping Contact</th>
                                         <th>Post Code</th>
-                                        <th>Country</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>{shippingDetails?.shippingName}</td>
+                                        <td>{shippingDetails?.shippingDivision}</td>
+                                        <td>{shippingDetails?.shippingDistrict}</td>
+                                        <td>{shippingDetails?.shippingPost}</td>
+                                        <td>{shippingDetails?.shippingArea}</td>
                                         <td>{shippingDetails?.shippingPhone}</td>
-                                        <td>{shippingDetails?.shippingAddress}</td>
-                                        <td>{shippingDetails?.shippingCity}</td>
-                                        <td>{shippingDetails?.shippingState}</td>
                                         <td>{shippingDetails?.shippingPostalCode}</td>
-                                        <td>{shippingDetails?.shippingCountry}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -204,7 +202,7 @@ const InvoiceDetails = () => {
                 {/* Buttons */}
                 <div className="d-flex flex-column flex-md-row justify-content-between mt-4">
                     <NavLink to="/all-products" className="btn btn-success mb-2 mb-md-0">Continue Shopping</NavLink>
-                    {paymentStatus === "SUCCESS" ? (
+                    {paymentStatus === "Success" ? (
                         <PDFDownloadLink
                             document={<InvoicePDF/>}
                             fileName="invoice.pdf"
@@ -213,7 +211,7 @@ const InvoiceDetails = () => {
                             {({loading}) => (loading ? "Generating..." : "Download Invoice")}
                         </PDFDownloadLink>
                     ) : (
-                        <CartBtn className="btn btn-success px-5">Pay</CartBtn>
+                        <CartBtn text="Pay" className="btn btn-success px-5"/>
                     )}
                 </div>
             </div>

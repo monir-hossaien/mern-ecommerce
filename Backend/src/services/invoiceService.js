@@ -76,22 +76,21 @@ export const createInvoiceService = async (req) => {
         let customerDetails = {
             name: profile[0].name,
             email: user_email,
-            address: profile[0].address,
-            country: profile[0].country,
+            division: profile[0].division,
+            district: profile[0].district,
+            post: profile[0].post,
+            area: profile[0].area,
             phone: profile[0].phone,
-            city: profile[0].city,
-            fax: profile[0].fax,
             postalCode: profile[0].postalCode,
-            state: profile[0].state,
         }
         let shippingDetails = {
             shippingName: profile[0].shippingName,
-            shippingAddress: profile[0].shippingAddress,
-            shippingCity: profile[0].shippingCity,
-            shippingCountry: profile[0].shippingCountry,
+            shippingDivision: profile[0].shippingDivision,
+            shippingDistrict: profile[0].shippingPhone,
+            shippingPost: profile[0].shippingPost,
+            shippingArea: profile[0].shippingArea,
             shippingPhone: profile[0].shippingPhone,
             shippingPostalCode: profile[0].shippingPostalCode,
-            shippingState: profile[0].shippingState,
         }
 
         // ...................Transaction ID & Others ID..........
@@ -137,22 +136,21 @@ export const createInvoiceService = async (req) => {
         // Customer Information
         form.append('cus_name', profile[0].name);
         form.append('cus_email', user_email);
-        form.append('cus_add1', profile[0].address);
-        form.append('cus_add2', profile[0].address);
-        form.append('cus_city', profile[0].city);
-        form.append('cus_state', profile[0].state);
-        form.append('cus_postcode', profile[0].postalCode);
-        form.append('cus_country', profile[0].country);
+        form.append('cus_add1', profile[0].area);
+        form.append('cus_add2', profile[0].area);
+        form.append('cus_division', profile[0].division);
+        form.append('cus_district', profile[0].district);
+        form.append('cus_post', profile[0].post);
         form.append('cus_phone', profile[0].phone);
-        form.append('cus_fax', profile[0].fax);
+
         //Shipment Information
         form.append('shipping_method', 'YES');
         form.append('ship_name', profile[0].shippingName);
-        form.append('ship_add1', profile[0].shippingAddress);
-        form.append('ship_city', profile[0].shippingCity);
-        form.append('ship_state', profile[0].shippingState);
-        form.append('ship_postcode', profile[0].shippingPostalCode);
-        form.append('ship_country', profile[0].shippingCountry);
+        form.append('ship_add1', profile[0].area);
+        form.append('ship_division', profile[0].shippingDivision);
+        form.append('ship_district', profile[0].shippingDistrict);
+        form.append('ship_post', profile[0].shippingPost);
+        form.append('ship_phone', profile[0].shippingPhone);
         //Product Information
         let product = await Product.aggregate([
             {$lookup:{from: "categories", localField: "categoryId", foreignField: "_id", as: "category"}},

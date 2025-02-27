@@ -123,6 +123,7 @@ export const productStore = create((set)=>({
     createReview: async (productID, reviewForm)=>{
         try {
             let res = await axios.post(`/api/create-review/${productID}`, reviewForm, {withCredentials: true})
+            set({reviewForm:{rating: "", description: ""}})
             return res.data
         }catch(err){
             unauthorized(err?.response?.status);

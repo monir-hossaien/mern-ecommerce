@@ -4,6 +4,7 @@ import StarRatings from "react-star-ratings/build/star-ratings.js";
 import { Link } from "react-router";
 import ProductsSkeleton from "../../Skeleton/ProductsSkeleton.jsx";
 import SidebarSkeleton from "../../Skeleton/sidebarSkeleton.jsx";
+import NoData from "./NoData.jsx";
 
 const ProductList = () => {
     let { productList, categoryList, getCategoryList, brandList, getBrandList, remarkList, getRemarkList } = productStore();
@@ -90,35 +91,43 @@ const ProductList = () => {
 
                     {/* Product List */}
                     <div className="col-lg-9 col-md-8">
-                        {productList === null ? (
-                            <ProductsSkeleton />
-                        ) : (
-                            <div className="row">
-                                {productList.map((item, i) => (
-                                    <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-                                        <Link to={`/product-details/${item._id}`} className="card h-100 shadow-sm rounded">
-                      <span className={`badge position-absolute top-0 end-0 ${item.stock ? "bg-success" : "bg-danger"}`}>
-                        {item.stock ? "In Stock" : "Sold Out"}
-                      </span>
-                                            <img src={item.productImg[0]} alt={item.title} className="card-img-top p-2" />
-                                            <div className="card-body">
-                                                <p className="small text-secondary">{item.title}</p>
-                                                <p className="fw-medium">
-                                                    {item.discount ? (
-                                                        <>
-                                                            <strike className="text-muted">${item.price}</strike> ${item.discountPrice}
-                                                        </>
-                                                    ) : (
-                                                        `$${item.price}`
-                                                    )}
-                                                </p>
-                                                <StarRatings rating={item.star} starRatedColor="red" starDimension="15px" starSpacing="2px" />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+                        {
+                            productList === null
+                                ? <ProductsSkeleton/>
+                                : productList.length === 0
+                                    ? <NoData/>
+                                    : (
+                                        <div className="row">
+                                            {productList.map((item, i) => (
+                                                <div key={i} className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
+                                                    <Link to={`/product-details/${item._id}`}
+                                                          className="card h-100 shadow-sm rounded">
+                                                        <span className={`badge position-absolute top-0 end-0 ${item.stock ? "bg-success" : "bg-danger"}`}>
+                                                            {item.stock ? "In Stock" : "Sold Out"}
+                                                        </span>
+                                                        <img src={item.productImg[0]} alt={item.title}
+                                                             className="card-img-top p-2"/>
+                                                        <div className="card-body">
+                                                            <p className="small text-secondary">{item.title}</p>
+                                                            <p className="fw-medium">
+                                                                {item.discount ? (
+                                                                    <>
+                                                                        <strike
+                                                                            className="text-muted">${item.price}</strike> ${item.discountPrice}
+                                                                    </>
+                                                                ) : (
+                                                                    `$${item.price}`
+                                                                )}
+                                                            </p>
+                                                            <StarRatings rating={item.star} starRatedColor="red"
+                                                                         starDimension="15px" starSpacing="2px"/>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )
+                        }
                     </div>
 
                 </div>
