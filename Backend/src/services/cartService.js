@@ -153,7 +153,6 @@ export const cartListService = async (req) => {
       {
         $project: {
           userId: 0,
-          productId: 0,
           createdAt: 0,
           updatedAt: 0,
           "product.categoryId": 0,

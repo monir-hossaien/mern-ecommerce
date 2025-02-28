@@ -34,32 +34,35 @@ const ScrollToTopOnNavigation = () => {
 
 const App = () => {
     return (
-        <BrowserRouter>
-            <ScrollToTopOnNavigation/>
-            <Routes>
-                <Route  path="/" element={<HomePage/>} />
-                <Route  path="/products-by-brand/:brandID" element={<ByBrandPage/>} />
-                <Route  path="/products-by-category/:categoryID" element={<ByCategoryPage/>} />
-                <Route  path="/product-by-remark/:remark" element={<ByRemarkPage/>} />
-                <Route  path="/products-by-keyword/:keyword" element={<ByKeywordPage/>} />
-                <Route  path="/product-details/:productID" element={<ProductDetailsPage/>} />
-                <Route  path="/all-products" element={<AllProducts/>} />
+        <>
+            <BrowserRouter>
+                <ScrollToTopOnNavigation/>
+                <Routes>
+                    <Route  path="/" element={<HomePage/>} />
+                    <Route  path="/products-by-brand/:brandID" element={<ByBrandPage/>} />
+                    <Route  path="/products-by-category/:categoryID" element={<ByCategoryPage/>} />
+                    <Route  path="/product-by-remark/:remark" element={<ByRemarkPage/>} />
+                    <Route  path="/products-by-keyword/:keyword" element={<ByKeywordPage/>} />
+                    <Route  path="/product-details/:productID" element={<ProductDetailsPage/>} />
+                    <Route  path="/all-products" element={<AllProducts/>} />
 
-                <Route  path="/login" element={<LoginPage/>} />
-                <Route  path="/sign-up" element={<SignUpPage/>} />
-                <Route  path="/otp-verify" element={<OTPVerifyPage/>} />
-                <Route  path="*" element={<ErrorPage/>} />
+                    <Route  path="/login" element={<LoginPage/>} />
+                    <Route  path="/sign-up" element={<SignUpPage/>} />
+                    <Route  path="/otp-verify" element={<OTPVerifyPage/>} />
+                    <Route  path="*" element={<ErrorPage/>} />
 
-                <Route element={<PrivateRoutes />}>
-                    <Route  path="/cart-list" element={<CartPage />} />
-                    <Route  path="/wish-list" element={<WishPage/>} />
-                    <Route  path="/profile" element={<ProfilePage/>} />
-                    <Route  path="/my-orders" element={<InvoicePage/>} />
-                    <Route  path="/invoice-details/:invoiceID" element={<InvoiceDetailsPage/>} />
-                </Route>
-            </Routes>
-            <ScrollTopBtn />
-        </BrowserRouter>
+                    <Route element={<PrivateRoutes />}>
+                        <Route  path="/cart-list" element={<CartPage />} />
+                        <Route  path="/wish-list" element={<WishPage/>} />
+                        <Route  path="/profile" element={<ProfilePage/>} />
+                        <Route  path="/my-orders" element={<InvoicePage/>} />
+                        <Route  path="/invoice-details/:invoiceID" element={<InvoiceDetailsPage/>} />
+                    </Route>
+                </Routes>
+                <ScrollTopBtn />
+            </BrowserRouter>
+        </>
+
     );
 };
 

@@ -24,11 +24,12 @@ const SignUp = () => {
         }
     };
 
+    const formBody = new FormData();
+    formBody.append("email", formData.email);
+    formBody.append("profileImage", formData.profileImage || "images/default-avatar.png");
+
     const handleSubmit = async () => {
         try {
-            const formBody = new FormData();
-            formBody.append("email", formData.email);
-            formBody.append("profileImage", formData.profileImage || "images/default-avatar.png");
             if(validation.IsEmpty(formData.email)) {
                 errorToast("Email must be required");
             }else{
