@@ -1,18 +1,18 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 
 export default defineConfig({
   plugins: [react()],
   server: {
-    proxy: process.env.NODE_ENV === 'development' ? {
+    proxy:{
       '/api/': {
-        target: "https://monirecommerce.vercel.app", // your backend URL on Vercel
+        target: "https://monirecommerce.vercel.app",
         changeOrigin: true,
-        secure: false,  // set this to true if using https
-        rewrite: (path) => path.replace(/^\/api/, ''),  // optional: rewrite '/api' to '' if needed
+        secure: false
       }
-    } : {}
+    }
   }
-});
+})
