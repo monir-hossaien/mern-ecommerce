@@ -9,7 +9,7 @@ export default defineConfig({
   server: {
     proxy:{
       '/api/': {
-        target: "https://mern-ecommerce-xyz.vercel"
+        target: "https://mern-ecommerce-xyz.vercel.app"
       }
     }
   }
