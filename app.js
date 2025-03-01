@@ -13,7 +13,12 @@ const app = express();
 //app level middleware
 app.use(express.json({limit: MAX_JSON_SIZE}));
 app.use(express.urlencoded({extended: true}));
-app.use(cors());
+
+const corsOption = {
+    origin : "https://mern-ecommerce-npl7.vercel.app",
+    Credential: true
+}
+app.use(cors(corsOption));
 app.use(helmet());
 app.use(cookieParser());
 

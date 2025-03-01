@@ -9,7 +9,7 @@ export default defineConfig({
   server: {
     proxy:{
       '/api/': {
-        target: "https://monirecommerce.vercel.app/",
+        target: "https://monirecommerce.vercel.app",
         changeOrigin: true,
         secure: false
       }
