@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: true}));
 const corsOption = {
     origin : "https://mern-ecommerce-npl7.vercel.app/",
     method: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    Credential: false,
+    credential: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
 }
 
