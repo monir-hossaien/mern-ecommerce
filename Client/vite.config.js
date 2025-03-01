@@ -12,7 +12,6 @@ export default defineConfig({
         target: "https://monirecommerce.vercel.app",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''),
       }
     }
   }
