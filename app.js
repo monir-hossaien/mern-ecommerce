@@ -43,6 +43,11 @@ mongoose.connect(DATABASE_URL)
 //router setup
 app.use("/api", router);
 
+//initial page 
+app.use("/", (req, res)=>{
+    res.send("Welcome to my Express Backend server")
+})
+
 app.use(express.static('Client/dist'));
 
 // Add React Front End Routing
@@ -50,10 +55,6 @@ app.get('*',function (req,res) {
     res.sendFile(path.resolve(__dirname,'Client','dist','index.html'))
 })
 
-//initial page 
-app.use("/", (req, res)=>{
-    res.send("Welcome to my Express Backend server")
-})
 
 // unexpected routes error handling
 app.use((req,res,next)=>{
