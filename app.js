@@ -15,7 +15,7 @@ app.use(express.json({limit: MAX_JSON_SIZE}));
 app.use(express.urlencoded({extended: true}));
 
 const corsOption = {
-    origin : "https://mern-ecommerce-npl7.vercel.app/",
+    origin : "https://mern-ecommerce5.vercel.app",
     method: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credential: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
