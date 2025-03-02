@@ -15,7 +15,7 @@ app.use(express.json({limit: MAX_JSON_SIZE}));
 app.use(express.urlencoded({extended: true}));
 
 const corsOption = {
-    origin : "https://amazing-taffy-45daac.netlify.app",
+    origin : "mern-ecommerce-10-yj7l.onrender.com",
     credential: true,
 }
 
