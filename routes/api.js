@@ -34,7 +34,8 @@ router.get("/productListByRemark/:remark", productController.productListByRemark
 router.get("/getSimilarProducts/:catId", productController.getSimilarProducts)
 router.get("/getAllProducts", productController.getAllProducts)
 router.get("/product-details/:productId", productController.readProductDetails)
-router.get("/review-list/:productId", authenticateUser, productController.productReviewList)
+router.post("/create-review/:productId", authenticateUser, userController.createReview);
+router.get("/review-list/:productId", productController.productReviewList)
 
 
 
@@ -46,7 +47,6 @@ router.get("/logout", authenticateUser, userController.logout);
 router.post("/send-otp", userController.emailSent);
 router.post("/create-profile", authenticateUser, userController.createProfile);
 router.post("/update-profile", authenticateUser, userController.updateProfile);
-router.post("/create-review/:productId", authenticateUser, userController.createReview);
 router.get("/read-profile", authenticateUser, userController.readProfile);
 router.get("/read-user", authenticateUser, userController.readUser);
 
