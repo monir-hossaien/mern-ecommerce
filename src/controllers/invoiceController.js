@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 
 import {
     createInvoiceService,
@@ -27,17 +29,33 @@ export const createInvoice = async(req, res)=>{
 // payment related
 export const paymentSuccess = async(req, res)=>{
     await paymentSuccessService(req);
-    res.redirect("https://mern-ecommerce-12-8lpi.onrender.com/my-orders")
+    // Redirect to local or production URL based on your environment
+    const redirectUrl = process.env.NODE_ENV === 'production'
+        ? 'https://mern-ecommerce-12-8lpi.onrender.com/my-orders'
+        : 'http://localhost:5173/my-orders';
+        
+    res.redirect(redirectUrl);
 }
 
 export const paymentCancel = async(req, res)=>{
     await paymentCancelService(req);
-    res.redirect("https://mern-ecommerce-12-8lpi.onrender.com/my-orders")
+
+    // Redirect to local or production URL based on your environment
+    const redirectUrl = process.env.NODE_ENV === 'production'
+        ? 'https://mern-ecommerce-12-8lpi.onrender.com/my-orders'
+        : 'http://localhost:5173/my-orders';
+        
+    res.redirect(redirectUrl);
 }
 
 export const paymentFail = async(req, res)=>{
     await paymentFailService(req);
-    res.redirect("https://mern-ecommerce-12-8lpi.onrender.com/my-orders")
+    // Redirect to local or production URL based on your environment
+    const redirectUrl = process.env.NODE_ENV === 'production'
+        ? 'https://mern-ecommerce-12-8lpi.onrender.com/my-orders'
+        : 'http://localhost:5173/my-orders';
+        
+    res.redirect(redirectUrl);
 }
 
 export const paymentIPN = async(req, res)=>{
