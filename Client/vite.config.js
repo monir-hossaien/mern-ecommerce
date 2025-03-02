@@ -17,6 +17,6 @@ export default defineConfig({
     host: '0.0.0.0', // Bind to all network interfaces
   },
   preview: {
-    allowedHosts: ['https://mern-ecommerce-12-8lpi.onrender.com'], // Add the allowed host
+    allowedHosts: ['mern-ecommerce-12-8lpi.onrender.com'], // Add the allowed host
   }
 });
