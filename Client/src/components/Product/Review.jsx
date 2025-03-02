@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {productStore} from "../../store/productStore.js";
 import StarRatings from "react-star-ratings/build/star-ratings.js";
 import ReviewSkeleton from "../../Skeleton/reviewSkeleton.jsx";
 import {TimestampToDate} from "../../Utility/helper.js";
 
-const Review = () => {
-    const {reviewList} = productStore();
+const Review = (props) => {
+    const {reviewList, getReviewList} = productStore();
+    const productID = props.id
+
+    useEffect(()=>{
+        (async()=>{
+            await getReviewList(productID)
+        })()
+    }, [getReviewList()])
 
     if(reviewList === null ){
         return (
@@ -13,7 +20,7 @@ const Review = () => {
         )
     }
     return (
-        <sction id="review_section">
+        <section id="review_section">
             {
                 reviewList?.map((review, i)=>{
                     return (
@@ -40,7 +47,7 @@ const Review = () => {
                     )
                 })
             }
-        </sction>
+        </section>
     );
 };
 

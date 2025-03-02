@@ -193,7 +193,7 @@ const ProductDetails = () => {
                             <div className="tab-pane fade" id="Review-tab-pane" role="tabpanel"
                                  aria-labelledby="Review-tab"
                                  tabIndex="0">
-                                <Review />
+                                <Review id={productDetails?.['_id']} />
                             </div>
                         </div>
                     </div>
