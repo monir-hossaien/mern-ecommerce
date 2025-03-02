@@ -15,5 +15,8 @@ export default defineConfig({
     },
     port: 4173, // Use Render's assigned PORT or default to 4173
     host: '0.0.0.0', // Bind to all network interfaces
+  },
+  preview: {
+    allowedHosts: ['monir-ecommerce-ysm9.onrender.com'], // Add the allowed host
   }
 });
