@@ -12,7 +12,7 @@ const Review = (props) => {
         (async()=>{
             await getReviewList(productID)
         })()
-    }, [getReviewList()])
+    }, [])
 
     if(reviewList === null ){
         return (
