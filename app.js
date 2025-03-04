@@ -12,7 +12,6 @@ const app = express();
 //app level middleware
 app.use(express.json({limit: MAX_JSON_SIZE}));
 app.use(express.urlencoded({extended: true}));
-app.disable('etag');
 
 const corsOption = {
     origin : "https://monir-ecommerce.vercel.app",
@@ -28,6 +27,7 @@ app.use(cookieParser());
 // const limiter = rateLimit({windowMs:REQUEST_TIME,max:REQUEST_NUMBER});
 // app.use(limiter);
 
+app.set('etag', false);
 
 //database connect
 mongoose.connect(DATABASE_URL)
@@ -46,12 +46,12 @@ app.use("/", (req, res)=>{
     res.send("Welcome to my Express Backend server")
 })
 
-// app.use(express.static('client/dist'));
+app.use(express.static('Client/dist'));
 
-// // Add React Front End Routing
-// app.get('*',function (req,res) {
-//     res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
-// })
+// Add React Front End Routing
+app.get('*',function (req,res) {
+    res.sendFile(path.resolve(__dirname,'Client','dist','index.html'))
+})
 
 
 // unexpected routes error handling
