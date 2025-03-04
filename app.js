@@ -12,6 +12,7 @@ const app = express();
 //app level middleware
 app.use(express.json({limit: MAX_JSON_SIZE}));
 app.use(express.urlencoded({extended: true}));
+app.disable('etag');
 
 const corsOption = {
     origin : "https://monir-ecommerce.vercel.app",
@@ -27,14 +28,6 @@ app.use(cookieParser());
 // const limiter = rateLimit({windowMs:REQUEST_TIME,max:REQUEST_NUMBER});
 // app.use(limiter);
 
-// Cache
-app.use((req, res, next) => {
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    next();
-  });
-  
 
 //database connect
 mongoose.connect(DATABASE_URL)
