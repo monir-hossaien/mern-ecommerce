@@ -9,7 +9,7 @@ export default defineConfig({
   server: {
     proxy:{
       '/api/': {
-        target: "https://mern-ecommerce-7-xiy6.onrender.com",
+        target: "https://mern-ecommerce-sable-kappa.vercel.app",
         changeOrigin: true,
         secure: false
       }

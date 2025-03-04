@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import rateLimit from 'express-rate-limit';
 import mongoose from "mongoose";
 import helmet from 'helmet';
 import router from './routes/api.js';
@@ -14,12 +13,12 @@ const app = express();
 app.use(express.json({limit: MAX_JSON_SIZE}));
 app.use(express.urlencoded({extended: true}));
 
-const corsOption = {
-    origin : "https://mern-ecommerce-12-8lpi.onrender.com",
-    credential: true,
-}
+// const corsOption = {
+//     origin : "https://mern-ecommerce-12-8lpi.onrender.com",
+//     credential: true,
+// }
 
-app.use(cors(corsOption));
+app.use(cors());
 app.use(helmet());
 app.use(cookieParser());
 
