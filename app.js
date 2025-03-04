@@ -28,7 +28,7 @@ app.use(cookieParser());
 // app.use(limiter);
 
 // Cache
-app.set('etag', WEB_CACHE)
+app.disable('etag');
 
 //database connect
 mongoose.connect(DATABASE_URL)
