@@ -13,12 +13,12 @@ const app = express();
 app.use(express.json({limit: MAX_JSON_SIZE}));
 app.use(express.urlencoded({extended: true}));
 
-// const corsOption = {
-//     origin : "https://mern-ecommerce-12-8lpi.onrender.com",
-//     credential: true,
-// }
+const corsOption = {
+    origin : "https://monir-ecommerce.vercel.app",
+    credential: true,
+}
 
-app.use(cors());
+app.use(cors(corsOption));
 app.use(helmet());
 app.use(cookieParser());
 
