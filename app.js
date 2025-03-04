@@ -28,7 +28,13 @@ app.use(cookieParser());
 // app.use(limiter);
 
 // Cache
-app.disable('etag');
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    next();
+  });
+  
 
 //database connect
 mongoose.connect(DATABASE_URL)
