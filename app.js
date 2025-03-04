@@ -46,12 +46,12 @@ app.use("/", (req, res)=>{
     res.send("Welcome to my Express Backend server")
 })
 
-app.use(express.static('client/dist'));
+// app.use(express.static('client/dist'));
 
-// Add React Front End Routing
-app.get('*',function (req,res) {
-    res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
-})
+// // Add React Front End Routing
+// app.get('*',function (req,res) {
+//     res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
+// })
 
 
 // unexpected routes error handling
