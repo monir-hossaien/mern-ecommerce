@@ -66,6 +66,10 @@ app.get('*', function (req, res) {
     res.sendFile(path.resolve(__dirname, 'Client', 'dist', 'index.html'));
 });
 
+// Disable ETag globally
+app.set('etag', false);
+
+// Override res.send to remove caching headers
 app.use((req, res, next) => {
     const originalSend = res.send;
     res.send = function (body) {
@@ -78,8 +82,8 @@ app.use((req, res, next) => {
     next();
 });
 
-// Disable ETag globally
-app.set('etag', false);
+// Use nocache middleware
+app.use(nocache());
 
 // Error handling for unexpected routes
 app.use((req, res, next) => {
