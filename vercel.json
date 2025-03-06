@@ -9,6 +9,11 @@
   "routes": [
     {
       "src": "/(.*)",
+      "headers": {
+        "Cache-Control": "no-store, no-cache, must-revalidate, private",
+        "Pragma": "no-cache",
+        "Expires": "0"
+      },
       "dest": "/index.js"
     }
   ]
