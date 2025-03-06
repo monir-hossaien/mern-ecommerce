@@ -60,14 +60,26 @@ app.use("/", (req, res) => {
 // Serve static files for the frontend (built React app)
 app.use(express.static('Client/dist', { etag: false }));
 
-// Disable ETag globally
-app.set('etag', false);
 
 // React frontend routing (single-page app handling)
 app.get('*', function (req, res) {
     res.sendFile(path.resolve(__dirname, 'Client', 'dist', 'index.html'));
 });
 
+app.use((req, res, next) => {
+    const originalSend = res.send;
+    res.send = function (body) {
+        res.removeHeader('ETag'); // Remove ETag header
+        res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+        return originalSend.call(this, body); // Call the original res.send
+    };
+    next();
+});
+
+// Disable ETag globally
+app.set('etag', false);
 
 // Error handling for unexpected routes
 app.use((req, res, next) => {
