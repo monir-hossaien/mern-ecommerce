@@ -3,13 +3,28 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import helmet from 'helmet';
-import rateLimit from 'express-rate-limit'; // Rate limit import
+import rateLimit from 'express-rate-limit';
 import router from './routes/api.js';
 import { DATABASE_URL, MAX_JSON_SIZE, REQUEST_NUMBER, REQUEST_TIME, WEB_CACHE } from "./src/config/config.js";
 import * as path from "node:path";
-import nocache from 'nocache';
 
 const app = express();
+
+// Disable ETag globally
+app.set('etag', false);
+
+// Override res.send to remove caching headers
+app.use((req, res, next) => {
+    const originalSend = res.send;
+    res.send = function (body) {
+        res.removeHeader('ETag'); // Remove ETag header
+        res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+        return originalSend.call(this, body); // Call the original res.send
+    };
+    next();
+});
 
 // App level middleware
 app.use(express.json({ limit: MAX_JSON_SIZE }));
@@ -20,7 +35,6 @@ const corsOptions = {
     origin: "https://monir-ecommerce.vercel.app",
     credentials: true,  // Allows credentials like cookies or authorization headers
 };
-
 app.use(cors(corsOptions));
 
 // Helmet for basic security
@@ -36,8 +50,6 @@ const limiter = rateLimit({
     message: "Too many requests from this IP, please try again later.",
 });
 app.use(limiter);
-
-
 
 // Database connection
 mongoose.connect(DATABASE_URL)
@@ -60,30 +72,10 @@ app.use("/", (req, res) => {
 // Serve static files for the frontend (built React app)
 app.use(express.static('Client/dist', { etag: false }));
 
-
 // React frontend routing (single-page app handling)
 app.get('*', function (req, res) {
     res.sendFile(path.resolve(__dirname, 'Client', 'dist', 'index.html'));
 });
-
-// Disable ETag globally
-app.set('etag', false);
-
-// Override res.send to remove caching headers
-app.use((req, res, next) => {
-    const originalSend = res.send;
-    res.send = function (body) {
-        res.removeHeader('ETag'); // Remove ETag header
-        res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-        res.set('Pragma', 'no-cache');
-        res.set('Expires', '0');
-        return originalSend.call(this, body); // Call the original res.send
-    };
-    next();
-});
-
-// Use nocache middleware
-app.use(nocache());
 
 // Error handling for unexpected routes
 app.use((req, res, next) => {
