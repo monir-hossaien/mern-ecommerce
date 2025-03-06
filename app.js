@@ -60,13 +60,14 @@ app.use("/", (req, res) => {
 // Serve static files for the frontend (built React app)
 app.use(express.static('Client/dist'));
 
+// Disable ETag globally
+app.set('etag', false);
+
 // React frontend routing (single-page app handling)
 app.get('*', function (req, res) {
     res.sendFile(path.resolve(__dirname, 'Client', 'dist', 'index.html'));
 });
 
-//catch disable
-app.use(nocache());
 
 // Error handling for unexpected routes
 app.use((req, res, next) => {
