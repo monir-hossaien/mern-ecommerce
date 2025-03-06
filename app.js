@@ -58,7 +58,7 @@ app.use("/", (req, res) => {
 });
 
 // Serve static files for the frontend (built React app)
-app.use(express.static('Client/dist'));
+app.use(express.static('Client/dist', { etag: false }));
 
 // Disable ETag globally
 app.set('etag', false);
