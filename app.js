@@ -7,6 +7,7 @@ import rateLimit from 'express-rate-limit'; // Rate limit import
 import router from './routes/api.js';
 import { DATABASE_URL, MAX_JSON_SIZE, REQUEST_NUMBER, REQUEST_TIME, WEB_CACHE } from "./src/config/config.js";
 import * as path from "node:path";
+import nocache from 'nocache';
 
 const app = express();
 
@@ -36,7 +37,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-app.set('etag', false);
+
 
 // Database connection
 mongoose.connect(DATABASE_URL)
@@ -63,6 +64,9 @@ app.use(express.static('Client/dist'));
 app.get('*', function (req, res) {
     res.sendFile(path.resolve(__dirname, 'Client', 'dist', 'index.html'));
 });
+
+//catch disable
+app.use(nocache());
 
 // Error handling for unexpected routes
 app.use((req, res, next) => {
