@@ -10,6 +10,7 @@ import { wishStore } from "../../store/wishStore.js";
 import { errorToast, successToast } from "../../Utility/helper.js";
 import validation from "../../Utility/validation.js";
 import WishBtn from "../Button/WishBtn.jsx";
+import {userStore} from "../../store/userStore.js";
 
 const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
@@ -17,6 +18,7 @@ const ProductDetails = () => {
 
     const { formData, inputOnchange, createCartRequest, setCartSubmit, getCartList } = cartStore();
     const { setWistSubmit, createWishRequest, getWishList } = wishStore();
+    const {isLogin} = userStore()
 
     const handleIncrement = () => {
         setQuantity(parseInt(quantity) + 1);
@@ -34,16 +36,18 @@ const ProductDetails = () => {
             } else if (validation.IsEmpty(formData.color)) {
                 errorToast("Please select color");
             } else {
-                setCartSubmit(true);
                 formData.quantity = parseInt(quantity);
-                let res = await createCartRequest(productID, formData);
-                if (res?.status === "success") {
-                    await getCartList();
-                    setCartSubmit(false);
-                    successToast(res?.message);
-                } else {
-                    setCartSubmit(false);
-                    errorToast(res?.message);
+                if(isLogin()){
+                    setCartSubmit(true);
+                    let res = await createCartRequest(productID, formData);
+                    if (res?.status === "success") {
+                        await getCartList();
+                        setCartSubmit(false);
+                        successToast(res?.message);
+                    } else {
+                        setCartSubmit(false);
+                        errorToast(res?.message);
+                    }
                 }
             }
 
@@ -56,15 +60,17 @@ const ProductDetails = () => {
     // product add to wish list
     const addToWish = async (productID) => {
         try {
-            setWistSubmit(true);
-            let res = await createWishRequest(productID);
-            if (res.status === "success") {
-                successToast(res?.message);
-                await getWishList();
-                setWistSubmit(false);
-            } else {
-                setWistSubmit(false);
-                errorToast(res?.message);
+            if(isLogin()){
+                setWistSubmit(true);
+                let res = await createWishRequest(productID);
+                if (res.status === "success") {
+                    successToast(res?.message);
+                    await getWishList();
+                    setWistSubmit(false);
+                } else {
+                    setWistSubmit(false);
+                    errorToast(res?.message);
+                }
             }
         } catch (err) {
             setWistSubmit(false);
