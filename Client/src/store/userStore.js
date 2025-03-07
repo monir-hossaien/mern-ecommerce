@@ -21,7 +21,7 @@ export const userStore = create((set)=>({
         }))
     },
     isLogin:()=>{
-        return !!cookies.get('token');
+        return !!Cookies.get('token');
     },
 
     isSubmit: false,
@@ -47,7 +47,7 @@ export const userStore = create((set)=>({
     OTPVerifyRequest: async (otp) =>{
         const email = getEmail()
         const res = await axios.post(`${base_url}/login`, {email: email, otp: otp}, {withCredentials: true})
-        cookies.set(res.data.token)
+        Cookies.set("token", res.data.token)
         set({formData: {email: ""}})
         const data = res?.data
         return data
