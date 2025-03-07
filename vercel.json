@@ -8,16 +8,6 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "headers": {
-        "Cache-Control": "no-store, no-cache, must-revalidate, private",
-        "Pragma": "no-cache",
-        "Expires": "0",
-        "x-vercel-cache": "MISS"
-      },
-      "dest": "/index.js"
-    },
-    {
       "src": "/(.*)",
       "dest": "/index.js"
     }
