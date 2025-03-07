@@ -56,12 +56,14 @@ const CartList = () => {
 
     const addToWishList = async (productID) => {
         try {
-            let res = await createWishRequest(productID);
-            if (res?.status === "success") {
-                await getWishList();
-                successToast(res?.message);
-            } else {
-                errorToast(res?.message);
+            if(isLogin()){
+                let res = await createWishRequest(productID);
+                if (res?.status === "success") {
+                    await getWishList();
+                    successToast(res?.message);
+                } else {
+                    errorToast(res?.message);
+                }
             }
         } catch (err) {
             errorToast(err?.response?.data?.message);

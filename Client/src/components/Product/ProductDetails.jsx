@@ -11,10 +11,12 @@ import { errorToast, successToast } from "../../Utility/helper.js";
 import validation from "../../Utility/validation.js";
 import WishBtn from "../Button/WishBtn.jsx";
 import {userStore} from "../../store/userStore.js";
+import {useNavigate} from "react-router-dom";
 
 const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const { productDetails } = productStore();
+    const navigate = useNavigate();
 
     const { formData, inputOnchange, createCartRequest, setCartSubmit, getCartList } = cartStore();
     const { setWistSubmit, createWishRequest, getWishList } = wishStore();
@@ -35,19 +37,19 @@ const ProductDetails = () => {
                 errorToast("Please select size");
             } else if (validation.IsEmpty(formData.color)) {
                 errorToast("Please select color");
-            } else {
+            } else if(!isLogin()){
+                navigate("/login");
+            }else {
                 formData.quantity = parseInt(quantity);
-                if(isLogin()){
-                    setCartSubmit(true);
-                    let res = await createCartRequest(productID, formData);
-                    if (res?.status === "success") {
-                        await getCartList();
-                        setCartSubmit(false);
-                        successToast(res?.message);
-                    } else {
-                        setCartSubmit(false);
-                        errorToast(res?.message);
-                    }
+                setCartSubmit(true);
+                let res = await createCartRequest(productID, formData);
+                if (res?.status === "success") {
+                    await getCartList();
+                    setCartSubmit(false);
+                    successToast(res?.message);
+                } else {
+                    setCartSubmit(false);
+                    errorToast(res?.message);
                 }
             }
 
@@ -71,6 +73,8 @@ const ProductDetails = () => {
                     setWistSubmit(false);
                     errorToast(res?.message);
                 }
+            }else{
+                navigate("/login");
             }
         } catch (err) {
             setWistSubmit(false);
