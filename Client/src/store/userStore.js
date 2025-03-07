@@ -3,7 +3,6 @@ import axios from "axios";
 import cookies from "js-cookie";
 import {getEmail, unauthorized} from "../Utility/helper.js";
 const base_url = "https://mern-ecommerce-sable-kappa.vercel.app/api"
-import cookies from "js-cookie";
 export const userStore = create((set)=>({
 
     //form onchange
