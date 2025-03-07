@@ -27,17 +27,17 @@ export const createInvoice = async(req, res)=>{
 // payment related
 export const paymentSuccess = async(req, res)=>{
     await paymentSuccessService(req);
-    res.redirect("https://mern-ecommerce-12-8lpi.onrender.com/my-orders")
+    res.redirect("https://monir-ecommerce-store.netlify.app/my-orders")
 }
 
 export const paymentCancel = async(req, res)=>{
     await paymentCancelService(req);
-    res.redirect("https://mern-ecommerce-12-8lpi.onrender.com/my-orders")
+    res.redirect("https://monir-ecommerce-store.netlify.app/my-orders")
 }
 
 export const paymentFail = async(req, res)=>{
     await paymentFailService(req);
-    res.redirect("https://mern-ecommerce-12-8lpi.onrender.com/my-orders")
+    res.redirect("https://monir-ecommerce-store.netlify.app/my-orders")
 }
 
 export const paymentIPN = async(req, res)=>{
