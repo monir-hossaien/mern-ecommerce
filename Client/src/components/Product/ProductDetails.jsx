@@ -62,7 +62,9 @@ const ProductDetails = () => {
     // product add to wish list
     const addToWish = async (productID) => {
         try {
-            if(isLogin()){
+            if(!isLogin()){
+                navigate("/login");
+            }else{
                 setWistSubmit(true);
                 let res = await createWishRequest(productID);
                 if (res.status === "success") {
@@ -73,8 +75,6 @@ const ProductDetails = () => {
                     setWistSubmit(false);
                     errorToast(res?.message);
                 }
-            }else{
-                navigate("/login");
             }
         } catch (err) {
             setWistSubmit(false);
