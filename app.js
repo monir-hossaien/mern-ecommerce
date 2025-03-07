@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // CORS configuration
 const corsOptions = {
-    origin: [ "http://localhost:5173"],
+    origin: "https://monir-ecommerce-store.netlify.app",
     credentials: true,  // Allows credentials like cookies or authorization headers
 };
 app.use(cors(corsOptions));
