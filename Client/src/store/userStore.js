@@ -1,7 +1,8 @@
 import {create} from "zustand";
 import axios from "axios";
 import cookies from "js-cookie";
-import {getEmail, setEmail, unauthorized} from "../Utility/helper.js";
+import {getEmail, unauthorized} from "../Utility/helper.js";
+const base_url = "https://mern-ecommerce-sable-kappa.vercel.app/api"
 
 
 export const userStore = create((set)=>({
@@ -30,7 +31,7 @@ export const userStore = create((set)=>({
     },
     // registration
     signUpRequest: async (formData)=>{
-        let res = await axios.post(`/api/register`, formData)
+        let res = await axios.post(`${base_url}/register`, formData)
         set({formData: {email: ""}})
         const data = res.data
         return data
@@ -38,7 +39,7 @@ export const userStore = create((set)=>({
     ,
     // send otp request
     sentOTPRequest: async (email) =>{
-        const res = await axios.post(`/api/send-otp`, {email});
+        const res = await axios.post(`${base_url}/send-otp`, {email});
         set({formData: {otp: ""}})
         const data = res?.data
         return data
@@ -46,14 +47,14 @@ export const userStore = create((set)=>({
     //
     OTPVerifyRequest: async (otp) =>{
         const email = getEmail()
-        const res = await axios.post(`/api/login`, {email: email, otp: otp}, {withCredentials: true})
+        const res = await axios.post(`${base_url}/login`, {email: email, otp: otp}, {withCredentials: true})
         set({formData: {email: ""}})
         const data = res?.data
         return data
     },
     //logout request
     logout: async ()=>{
-        const res = await axios.get(`/api/logout`, {withCredentials: true})
+        const res = await axios.get(`${base_url}/logout`, {withCredentials: true})
         const data = res?.data
         return data
     },
@@ -61,7 +62,7 @@ export const userStore = create((set)=>({
     //create or update profile
     saveProfile: async (formData)=>{
         try {
-            const res = await axios.post(`/api/create-profile`, formData, {withCredentials: true})
+            const res = await axios.post(`${base_url}/create-profile`, formData, {withCredentials: true})
             if (res.data.status === "success") {
                 set({
                     formData: {
@@ -82,7 +83,7 @@ export const userStore = create((set)=>({
     profile: null,
     getProfileDetails: async ()=>{
         try {
-            const res = await axios.get(`/api/read-profile`, {withCredentials: true})
+            const res = await axios.get(`${base_url}/read-profile`, {withCredentials: true})
             const data = res.data.data
             if(res.data.status === "success"){
                 set({profile: data})
@@ -97,7 +98,7 @@ export const userStore = create((set)=>({
     user: null,
     getUserDetails: async ()=>{
         try {
-            const res = await axios.get(`/api/read-user`, {withCredentials: true})
+            const res = await axios.get(`${base_url}/read-user`, {withCredentials: true})
             const data = res.data.data
             if(res.data.status === "success"){
                 set({user: data})
@@ -111,7 +112,7 @@ export const userStore = create((set)=>({
     divisionList: [],
     getDivisionList: async ()=>{
         try {
-            const res = await axios.get("/api/division-list")
+            const res = await axios.get(`${base_url}/division-list`)
             set({divisionList: res.data.data})
         }catch(err){
             unauthorized(err?.response?.status)
@@ -122,7 +123,7 @@ export const userStore = create((set)=>({
     districtList: [],
     getDistrictList: async (divisionID)=>{
         try {
-            const res = await axios.get(`/api/district-list/${divisionID}`)
+            const res = await axios.get(`${base_url}/district-list/${divisionID}`)
             set({districtList: res.data.data || []})
         }catch(err){
             unauthorized(err?.response?.status)
@@ -133,7 +134,7 @@ export const userStore = create((set)=>({
     postList: [],
     getPostList: async (districtID)=>{
         try {
-            const res = await axios.get(`/api/post-list/${districtID}`)
+            const res = await axios.get(`${base_url}/post-list/${districtID}`)
             set({postList: res.data.data || []})
         }catch(err){
             unauthorized(err?.response?.status)

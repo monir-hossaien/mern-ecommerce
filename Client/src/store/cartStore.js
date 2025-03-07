@@ -2,8 +2,7 @@
 import {create} from "zustand";
 import axios from "axios";
 import {unauthorized} from "../Utility/helper.js";
-import cartList from "../components/Product/CartList.jsx";
-
+const base_url = "https://mern-ecommerce-sable-kappa.vercel.app/api"
 
 export const cartStore = create((set)=>({
 
@@ -24,7 +23,7 @@ export const cartStore = create((set)=>({
     // product add to cart list
     createCartRequest: async (productID, formData)=>{
         try {
-            const res = await axios.post(`/api/add-cart/${productID}`, formData, {withCredentials: true});
+            const res = await axios.post(`${base_url}/add-cart/${productID}`, formData, {withCredentials: true});
             set({formData: {size: "", color: "", quantity: ""},})
             const data = res?.data
             return data
@@ -35,7 +34,7 @@ export const cartStore = create((set)=>({
     // update cart
     updateCartRequest: async (cartId, formData)=>{
         try {
-            let res = await axios.put(`/api/update-cart/${cartId}`, formData, {withCredentials: true});
+            let res = await axios.put(`${base_url}/update-cart/${cartId}`, formData, {withCredentials: true});
             const data = res?.data
             return data
         }catch (err) {
@@ -52,7 +51,7 @@ export const cartStore = create((set)=>({
 
     getCartList: async () => {
         try {
-            let res = await axios.get(`/api/cart-list`, { withCredentials: true });
+            let res = await axios.get(`${base_url}/cart-list`, { withCredentials: true });
             let data = res.data.data;
 
             if (res.data.status === "success") {
@@ -95,7 +94,7 @@ export const cartStore = create((set)=>({
     //remove cart item
     removeCartRequest: async (cartID) =>{
         try {
-            const res = await axios.delete(`/api/delete-cart/${cartID}`,{withCredentials: true});
+            const res = await axios.delete(`${base_url}/delete-cart/${cartID}`,{withCredentials: true});
             const data = res?.data
             return data
         }catch (err) {

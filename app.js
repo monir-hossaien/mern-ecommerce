@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // CORS configuration
 const corsOptions = {
-    origin: "https://monir-ecommerce-store.netlify.app",
+    origin: [ "http://localhost:5173"],
     credentials: true,  // Allows credentials like cookies or authorization headers
 };
 app.use(cors(corsOptions));
@@ -69,13 +69,13 @@ app.use("/", (req, res) => {
     res.send("Welcome to my Express Backend server");
 });
 
-// Serve static files for the frontend (built React app)
-app.use(express.static('Client/dist', { etag: false }));
+// // Serve static files for the frontend (built React app)
+// app.use(express.static('Client/dist', { etag: false }));
 
-// React frontend routing (single-page app handling)
-app.get('*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'Client', 'dist', 'index.html'));
-});
+// // React frontend routing (single-page app handling)
+// app.get('*', function (req, res) {
+//     res.sendFile(path.resolve(__dirname, 'Client', 'dist', 'index.html'));
+// });
 
 // Error handling for unexpected routes
 app.use((req, res, next) => {

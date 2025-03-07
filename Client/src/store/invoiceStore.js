@@ -2,12 +2,13 @@
 import {create} from "zustand";
 import axios from "axios";
 import {unauthorized} from "../Utility/helper.js";
+const base_url = "https://mern-ecommerce-sable-kappa.vercel.app/api"
 
 export const invoiceStore = create((set)=>({
 
     createInvoice: async ()=>{
     try {
-        const res = await axios.post(`/api/create-invoice`,{withCredentials: true});
+        const res = await axios.post(`${base_url}/create-invoice`,{withCredentials: true});
         return res?.data
     }catch (err) {
         unauthorized(err?.response?.status)
@@ -18,7 +19,7 @@ export const invoiceStore = create((set)=>({
     getInvoiceList: async ()=>{
         try {
             set({invoiceList: null})
-            const res = await axios.get(`/api/invoice-list`,{withCredentials: true});
+            const res = await axios.get(`${base_url}/invoice-list`,{withCredentials: true});
             const data = res?.data?.data
             set({invoiceList: data})
         }catch (err) {
@@ -30,7 +31,7 @@ export const invoiceStore = create((set)=>({
     getInvoiceDetails: async (invoiceID) => {
         try {
             set({ invoiceDetailsData: null });
-            const res = await axios.get(`/api/invoice-details/${invoiceID}`, { withCredentials: true });
+            const res = await axios.get(`${base_url}/invoice-details/${invoiceID}`, { withCredentials: true });
             const data = res?.data?.data; // API returns an array
 
             if (data && data.length > 0) {
