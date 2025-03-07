@@ -7,7 +7,7 @@ export const createWishesService = async (req)=>{
         const id= req.headers.id;
         const userId = new objId(id);
         const productId = new objId(req.params.productId);
-        const wishProduct = {userId, productId};
+        const wishProduct = {userId: userId, productId:productId};
         const existingProduct = await WishModel.findOne({userId, productId})
 
         if(existingProduct){

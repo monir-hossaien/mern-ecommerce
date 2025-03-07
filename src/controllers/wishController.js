@@ -2,7 +2,7 @@ import {
     createWishesService,
     deleteWishService,
     wishListService
-} from "../../src/services/wishService.js";
+} from "../services/wishService.js";
 
 export const createWishesProduct = async (req, res) => {
     const result = await createWishesService(req);
