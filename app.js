@@ -69,12 +69,12 @@ app.use("/", (req, res) => {
     res.send("Welcome to my Express Backend server");
 });
 
-// Serve static files for the frontend (built React app)
-app.use(express.static('Client/dist', { etag: false }));
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'Client', 'dist'), { etag: false }));
 
-// React frontend routing (single-page app handling)
-app.get('*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'Client', 'dist', 'index.html'));
+// Handle React routing, return all requests to React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Client', 'dist', 'index.html'));
 });
 
 // Error handling for unexpected routes
