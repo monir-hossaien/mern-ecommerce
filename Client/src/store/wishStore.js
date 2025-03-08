@@ -15,7 +15,6 @@ export const  wishStore = create((set)=>({
     createWishRequest: async (productID)=>{
         try {
             const res = await axios.post(`${base_url}/create-wish/${productID}`, {},{withCredentials: true});
-            console.log(res)
             const data = res?.data
             return data
         }catch (err) {

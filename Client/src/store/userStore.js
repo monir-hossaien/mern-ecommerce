@@ -3,6 +3,7 @@ import axios from "axios";
 import cookies from "js-cookie";
 import {getEmail, unauthorized} from "../Utility/helper.js";
 const base_url = "https://mern-ecommerce-sable-kappa.vercel.app/api"
+
 export const userStore = create((set)=>({
 
     //form onchange
@@ -46,7 +47,8 @@ export const userStore = create((set)=>({
     OTPVerifyRequest: async (otp) =>{
         const email = getEmail()
         const res = await axios.post(`${base_url}/login`, {email: email, otp: otp}, {withCredentials: true})
-        cookies.set("token", res.data.token)
+        console.log(res)
+        // cookies.set("token", res.data.token)
         set({formData: {email: ""}})
         const data = res?.data
         return data

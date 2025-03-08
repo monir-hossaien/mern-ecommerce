@@ -4,7 +4,7 @@ import {
     emailVerifyService,
     loginService, readProfileService,
     registerService, readUserService
-} from "../../src/services/userService.js"
+} from "../services/userService.js"
 
 import {COOKIE_EXPIRE_TIME} from "../config/config.js";
 import User from "../models/user/userModel.js";
@@ -26,12 +26,13 @@ export const login = async (req, res) => {
     if (result.status === "success") {
         // Create cookie options
         const cookieOptions = {
-            httpOnly: false,
-            secure: false, // Set to false for development (HTTP)
-            sameSite: "none", // Use "lax" or "strict" for development
+            httpOnly: true,
+            secure: true, // Always true on Vercel
+            sameSite: "none", // Required for cross-origin requests
             maxAge: COOKIE_EXPIRE_TIME,
             path: "/"
         };
+
 
         // Ensure token is valid
         if (!result.token) {
