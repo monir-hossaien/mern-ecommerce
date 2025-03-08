@@ -28,6 +28,7 @@ export const login = async (req, res) => {
         const cookieOptions = {
             httpOnly: true,
             secure: true, // Always true on Vercel
+            partitioned: true,
             sameSite: "none", // Required for cross-origin requests
             maxAge: COOKIE_EXPIRE_TIME,
             path: "/"
