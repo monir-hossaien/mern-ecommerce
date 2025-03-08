@@ -70,11 +70,11 @@ const ProductDetails = () => {
                 setWistSubmit(false);
             } else {
                 setWistSubmit(false);
-                errorToast(res?.message);
+                // errorToast(res?.message);
             }
         } catch (err) {
             setWistSubmit(false);
-            errorToast(err?.response?.data?.message);
+            // errorToast(err?.response?.data?.message);
         }
     };
 

@@ -26,6 +26,7 @@ const CartList = () => {
     const { createWishRequest, getWishList } = wishStore();
     const { createInvoice } = invoiceStore();
     const navigate = useNavigate();
+
     useEffect(() => {
         (async () => {
             isLogin() &&
@@ -61,8 +62,6 @@ const CartList = () => {
                 if (res?.status === "success") {
                     await getWishList();
                     successToast(res?.message);
-                } else {
-                    errorToast(res?.message);
                 }
             }
         } catch (err) {

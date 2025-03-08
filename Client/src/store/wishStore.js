@@ -1,7 +1,7 @@
 
 import {create} from "zustand";
 import axios from "axios";
-import {unauthorized} from "../Utility/helper.js";
+import {errorToast, unauthorized} from "../Utility/helper.js";
 const base_url = "https://mern-ecommerce-sable-kappa.vercel.app/api"
 
 
@@ -19,7 +19,8 @@ export const  wishStore = create((set)=>({
             const data = res?.data
             return data
         }catch (err) {
-            // unauthorized(err?.response?.status)
+            unauthorized(err?.response?.status)
+            errorToast(err?.response?.data?.message)
         }
     },
 
@@ -28,7 +29,7 @@ export const  wishStore = create((set)=>({
     wishCount: 0,
     getWishList: async () =>{
         try {
-            set({wishProductList: null})
+            // set({wishProductList: null})
             const res = await axios.get(`${base_url}/wish-list`, {withCredentials: true});
             let data = res.data.data
             if(res.data.status === "success"){
