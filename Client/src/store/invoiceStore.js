@@ -8,7 +8,7 @@ export const invoiceStore = create((set)=>({
 
     createInvoice: async ()=>{
     try {
-        const res = await axios.post(`${base_url}/create-invoice`,{withCredentials: true});
+        const res = await axios.post(`${base_url}/create-invoice`, {}, {withCredentials: true});
         return res?.data
     }catch (err) {
         unauthorized(err?.response?.status)

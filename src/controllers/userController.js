@@ -23,20 +23,29 @@ export const emailSent = async (req, res) => {
 // user login
 export const login = async (req, res) => {
     const result = await loginService(req);
-    if(result.status === "success") {
-        //create cookie options
+    if (result.status === "success") {
+        // Create cookie options
         const cookieOptions = {
             httpOnly: false,
-            secure: false,
+            secure: false, // Set to false for development (HTTP)
+            sameSite: "none", // Use "lax" or "strict" for development
             maxAge: COOKIE_EXPIRE_TIME,
             path: "/"
         };
-        //set user access token in res cookie
+
+        // Ensure token is valid
+        if (!result.token) {
+            return res.status(500).json({ status: "error", message: "Token not generated" });
+        }
+
+        // Set user access token in res cookie
         res.cookie('token', result.token, cookieOptions);
+
         return res.json(result);
+    } else {
+        return res.status(401).json(result); // Handle login failure
     }
-    return res.json(result);
-}
+};
 
 // user logout
 export const logout = async (req, res) => {

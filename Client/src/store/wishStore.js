@@ -14,11 +14,12 @@ export const  wishStore = create((set)=>({
     // product add to wish list
     createWishRequest: async (productID)=>{
         try {
-            const res = await axios.post(`${base_url}/create-wish/${productID}`, {withCredentials: true});
+            const res = await axios.post(`${base_url}/create-wish/${productID}`, {},{withCredentials: true});
+            console.log(res)
             const data = res?.data
             return data
         }catch (err) {
-            unauthorized(err?.response?.status)
+            // unauthorized(err?.response?.status)
         }
     },
 

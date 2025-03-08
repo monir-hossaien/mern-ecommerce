@@ -34,6 +34,7 @@ const OtpVerify = () => {
             else{
                 setSubmit(true)
                 let res = await OTPVerifyRequest(formData.otp);
+                console.log(res)
                 if(res.status === "success"){
                     //email remove from local storage
                     removeEmail()
