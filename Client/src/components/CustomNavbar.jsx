@@ -11,6 +11,7 @@ import {CgProfile} from "react-icons/cg";
 import {IoBagCheck, IoHomeOutline} from "react-icons/io5";
 import {TbLogout2} from "react-icons/tb";
 import {FaShopify} from "react-icons/fa";
+import cookies from "js-cookie";
 
 const CustomNavbar = () => {
     const navigate = useNavigate();
@@ -30,14 +31,11 @@ const CustomNavbar = () => {
         })()
     }, [isLogin, getProfileDetails]);
 
-    const logoutHandler = async () => {
-        const res = await logout();
-        if (res?.status === "success") {
-            successToast(res?.message);
-            navigate("/");
-        } else {
-            errorToast(res?.message);
-        }
+    const logoutHandler =  () => {
+        cookies.remove("token");
+        successToast("Logout successful");
+        navigate("/");
+
     };
 
     const handleSearch = (e) => {

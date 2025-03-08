@@ -48,17 +48,17 @@ export const userStore = create((set)=>({
         const email = getEmail()
         const res = await axios.post(`${base_url}/login`, {email: email, otp: otp}, {withCredentials: true})
         console.log(res)
-        // cookies.set("token", res.data.token)
+        cookies.set("token", res.data.token)
         set({formData: {email: ""}})
         const data = res?.data
         return data
     },
-    //logout request
-    logout: async ()=>{
-        const res = await axios.get(`${base_url}/logout`, {withCredentials: true})
-        const data = res?.data
-        return data
-    },
+    // //logout request
+    // logout: async ()=>{
+    //     const res = await axios.get(`${base_url}/logout`, {withCredentials: true})
+    //     const data = res?.data
+    //     return data
+    // },
 
     //create or update profile
     saveProfile: async (formData)=>{
