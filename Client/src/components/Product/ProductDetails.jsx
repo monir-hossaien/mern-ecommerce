@@ -73,6 +73,8 @@ const ProductDetails = () => {
                     setWistSubmit(false);
                     // errorToast(res?.message);
                 }
+            }else{
+                navigate("/login");
             }
         } catch (err) {
             setWistSubmit(false);
