@@ -62,15 +62,17 @@ const ProductDetails = () => {
     // product add to wish list
     const addToWish = async (productID) => {
         try {
-            setWistSubmit(true);
-            let res = await createWishRequest(productID);
-            if (res.status === "success") {
-                successToast(res?.message);
-                await getWishList();
-                setWistSubmit(false);
-            } else {
-                setWistSubmit(false);
-                // errorToast(res?.message);
+            if(isLogin()){
+                setWistSubmit(true);
+                let res = await createWishRequest(productID);
+                if (res.status === "success") {
+                    successToast(res?.message);
+                    await getWishList();
+                    setWistSubmit(false);
+                } else {
+                    setWistSubmit(false);
+                    // errorToast(res?.message);
+                }
             }
         } catch (err) {
             setWistSubmit(false);
