@@ -4,7 +4,8 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import router from './routes/api.js';
+import router from './src/routes/api.js';
+
 import { DATABASE_URL, MAX_JSON_SIZE, REQUEST_NUMBER, REQUEST_TIME, WEB_CACHE } from "./src/config/config.js";
 import * as path from "node:path";
 
