@@ -56,13 +56,13 @@ const CustomNavbar = () => {
                             </div>
                         </div>
 
-                        <div className="col-md-4 col-6">
-                            <div className="d-flex align-items-center justify-content-md-center gap-3">
+                        <div className="col-md-4 col-7">
+                            <div className="d-flex align-items-center justify-content-md-center">
                                 <span className="fs-6">New year sale - 30% off</span>
                             </div>
                         </div>
 
-                        <div className="col-md-4 col-6">
+                        <div className="col-md-4 col-5">
                             {
                                 isLogin() ? (
                                     <div className="fs-6">
