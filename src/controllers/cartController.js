@@ -1,5 +1,5 @@
 
-import {addToCartService, deleteCartService, cartListService, updateCartService} from "../../src/services/cartService.js"
+import {addToCartService, deleteCartService, cartListService, updateCartService} from "../services/cartService.js"
 
 // add product to cart list
 export const addToCart = async (req, res)=>{

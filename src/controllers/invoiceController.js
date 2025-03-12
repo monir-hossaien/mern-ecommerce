@@ -8,7 +8,7 @@ import {
     paymentSuccessService,
     invoiceListService,
     invoiceProductsListService
-} from "../../src/services/invoiceService.js";
+} from "../services/invoiceService.js";
 
 
 // create payment setting

@@ -1,17 +1,17 @@
 import express from "express"
 //import all model
-import * as productController from "../src/controllers/productController.js";
-import * as userController from "../src/controllers/userController.js";
-import * as sliderController from "../src/controllers/sliderController.js";
-import * as wishController from "../src/controllers/wishController.js";
-import * as featureController from "../src/controllers/featureController.js";
-import * as cartController from "../src/controllers/cartController.js";
-import * as invoiceController from "../src/controllers/invoiceController.js"
-import * as remarkController from "../src/controllers/remarkController.js"
-import * as locationController from "../src/controllers/locationController.js"
+import * as productController from "../controllers/productController.js";
+import * as userController from "../controllers/userController.js";
+import * as sliderController from "../controllers/sliderController.js";
+import * as wishController from "../controllers/wishController.js";
+import * as featureController from "../controllers/featureController.js";
+import * as cartController from "../controllers/cartController.js";
+import * as invoiceController from "../controllers/invoiceController.js"
+import * as remarkController from "../controllers/remarkController.js"
+import * as locationController from "../controllers/locationController.js"
 //import auth middleware
-import {authenticateUser} from "../src/middleware/authMiddleware.js";
-import {upload} from "../src/Helpers/helper.js";
+import {authenticateUser} from "../middleware/authMiddleware.js";
+import {upload} from "../Helpers/helper.js";
 
 
 

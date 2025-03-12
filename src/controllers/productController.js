@@ -13,7 +13,7 @@ import {
     createBrandService,
     createCategoryService,
     createProductDetailsService, reviewListService
-} from "../../src/services/productService.js";
+} from "../services/productService.js";
 
 // product create
 export const createProduct = async (req, res) => {
