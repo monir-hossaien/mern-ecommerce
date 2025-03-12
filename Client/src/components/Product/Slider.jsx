@@ -41,7 +41,9 @@ const Slider = () => {
                                                 <h1 className="headline-1">{title}</h1>
                                                 <p className="py-2 lh-base">{description}</p>
                                                 <h6 className="fw-medium text-danger py-2">$ {price}</h6>
-                                                <Link to={`/product-details/${productID}`} className="btn text-white btn-success mt-3">
+                                                <Link to={`/product-details/${productID}`} className="btn text-white px-5  mt-3"
+                                                      style={{ background: "#00234D" }}>
+
                                                     Buy Now
                                                 </Link>
                                             </div>

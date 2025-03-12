@@ -8,6 +8,7 @@ export const EMAIL_HOST = "smtp.gmass.co.";
 export const EMAIL_PASS = "37766468-6f2b-4601-83bb-6f22ffb233cf";
 export const EMAIL_USER = "gmass";
 export const EMAIL_PORT = 587;
+
 // export const MAIL_ENCRYPTION="ssl"
 
 export const WEB_CACHE=false

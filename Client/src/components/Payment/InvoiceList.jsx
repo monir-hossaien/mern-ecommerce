@@ -67,7 +67,7 @@ const InvoiceList = () => {
                                         <td className="text-end fw-medium">${vat}</td>
                                         <td className="text-end fw-medium">${payable}</td>
                                         <td className="text-center">
-                                            <NavLink to={`/invoice-details/${_id}`} className="btn btn-success">View</NavLink>
+                                            <NavLink to={`/invoice-details/${_id}`} className="btn text-white px-4" style={{ background: "#00234D"}}>View</NavLink>
                                         </td>
                                     </tr>
                                 )

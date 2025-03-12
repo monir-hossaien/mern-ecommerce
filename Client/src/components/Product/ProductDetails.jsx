@@ -161,7 +161,8 @@ const ProductDetails = () => {
                                             onClick={() => addToCart(productDetails?.['_id'])}
                                             type="button"
                                             text="Add to cart"
-                                            className="btn btn-success px-4 fw-bold w-100"
+                                            className="btn text-white  px-4 fw-bold w-100"
+                                            style={{ background: "#00234D"}}
                                         />
                                     </div>
                                     <div className="col-12 col-sm-6">

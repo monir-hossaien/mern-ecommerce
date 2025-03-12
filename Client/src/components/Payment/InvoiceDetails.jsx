@@ -165,7 +165,7 @@ const InvoiceDetails = () => {
                                                         <button onClick={() => setSelected(item.product._id)}
                                                                 type="button" data-bs-toggle="modal"
                                                                 data-bs-target="#reviewModal"
-                                                                className="btn btn-success btn-sm">Review
+                                                                className="btn text-white btn-sm" style={{ background: "#00234D"}}>Review
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -201,7 +201,7 @@ const InvoiceDetails = () => {
 
                 {/* Buttons */}
                 <div className="d-flex flex-column flex-md-row justify-content-between mt-4">
-                    <NavLink to="/all-products" className="btn btn-success mb-2 mb-md-0">Continue Shopping</NavLink>
+                    <NavLink to="/all-products" className="btn text-white mb-2 mb-md-0" style={{ background: "#00234D"}}>Continue Shopping</NavLink>
                     {paymentStatus === "Success" ? (
                         <PDFDownloadLink
                             document={<InvoicePDF/>}
@@ -211,7 +211,7 @@ const InvoiceDetails = () => {
                             {({loading}) => (loading ? "Generating..." : "Download Invoice")}
                         </PDFDownloadLink>
                     ) : (
-                        <CartBtn text="Pay" className="btn btn-success px-5"/>
+                        <CartBtn text="Pay" className="btn text-white px-5" style={{ background: "#00234D"}}/>
                     )}
                 </div>
             </div>

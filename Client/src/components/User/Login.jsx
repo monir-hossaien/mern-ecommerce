@@ -42,7 +42,7 @@ const Login = () => {
                         <div className="mb-4">
                             <input value={formData.email} onChange={(e)=>inputOnchange("email", e.target.value)} type="email" id="form2Example1" className="form-control shadow-none focus-ring-success" placeholder="Email"  />
                         </div>
-                        <UserButton type="submit" text="Send OTP" className="btn btn-success w-100 mb-4" />
+                        <UserButton type="submit" text="Send OTP" className="btn text-white w-100 mb-4" style={{ background: "#00234D"}} />
                         <div className="text-center">
                             <p>
                                 Not a member?

@@ -85,7 +85,8 @@ const ReviewModal = (props) => {
                             onClick={handleSubmit}
                             type="button"
                             text="Submit"
-                            className="btn btn-success w-25"
+                            className="btn text-white w-25"
+                            style={{ background: "#00234D"}}
                             disabled={isSubmitting}
                         />
                     </div>

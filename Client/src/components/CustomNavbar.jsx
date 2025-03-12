@@ -47,24 +47,36 @@ const CustomNavbar = () => {
 
     return (
         <>
-            <div className="container-fluid text-white p-2 bg-success">
+            <div className="container-fluid text-white p-2" id="top_bar">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-6 col-8">
-                            <div className="d-flex align-items-center gap-3">
-                                <span><i className="bi bi-envelope"></i> Support@PlanB.com</span>
-                                <span><i className="bi bi-envelope"></i> 01774688159</span>
+                        <div className="col-md-4">
+                            <div className="d-none d-md-flex align-items-center gap-3">
+                                <span className="fs-6">Call: +074688159</span>
                             </div>
                         </div>
 
-                        <div className="col-md-6 col-4">
-                            <div className="float-lg-end">
-                                <div className="d-flex gap-3 justify-content-end">
-                                    <i className="bi bi-whatsapp"></i>
-                                    <i className="bi bi-youtube"></i>
-                                    <i className="bi bi-facebook"></i>
-                                </div>
+                        <div className="col-md-4 col-6">
+                            <div className="d-flex align-items-center justify-content-md-center gap-3">
+                                <span className="fs-6">New year sale - 30% off</span>
                             </div>
+                        </div>
+
+                        <div className="col-md-4 col-6">
+                            {
+                                isLogin() ? (
+                                    <div className="fs-6">
+                                        <div className="d-flex  align-items-center gap-1 justify-content-end">
+                                             <span onClick={logoutHandler} style={{cursor: "pointer"}} className="d-flex gap-1 align-items-center"><TbLogout2 /> Logout</span>
+                                        </div>
+                                    </div>
+                                ): (
+                                    <div className="d-flex align-items-center gap-1 justify-content-end">
+                                        <i className="bi bi-person-fill fs-6"></i>
+                                        <Link to="/login" className="text-white fs-6" >Login</Link>
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                 </div>
@@ -140,8 +152,8 @@ const CustomNavbar = () => {
                         </Form>
 
                         {/* Icons for Cart, Wishlist, and Profile */}
-                        <Nav className="d-lg-flex align-items-md-center gap-lg-3 ms-lg-5">
-                            <div className="d-none d-lg-flex">
+                        <Nav className="">
+                            <div className="d-none d-lg-flex align-items-md-center ms-lg-5">
                                 {/* Cart Icon */}
                                 <Nav.Link as={Link} to="/cart-list" className="position-relative">
                                     <i className="bi bi-bag text-dark fs-5"></i>
@@ -193,11 +205,6 @@ const CustomNavbar = () => {
                                                 <IoBagCheck/> My Orders
                                             </div>
                                         </NavDropdown.Item>
-                                        <NavDropdown.Item onClick={logoutHandler}>
-                                            <div className="d-flex  align-items-center gap-1">
-                                                <TbLogout2/> Logout
-                                            </div>
-                                        </NavDropdown.Item>
                                     </NavDropdown>
 
                                     {/*mobile device*/}
@@ -212,20 +219,11 @@ const CustomNavbar = () => {
                                                 <IoBagCheck /> My Orders
                                             </div>
                                         </Nav.Link>
-                                        <Nav onClick={logoutHandler} className="fs-6">
-                                            <div className="d-flex  align-items-center gap-1">
-                                                <TbLogout2 /> Logout
-                                            </div>
-                                        </Nav>
                                     </Nav>
                                 </>
 
                             ) : (
-                                <Nav.Link as={Link} to="/login" className="fs-6">
-                                    <div className="d-flex align-items-center gap-1">
-                                        <i className="bi bi-person-fill fs-5"></i>Login
-                                    </div>
-                                </Nav.Link>
+                                <span></span>
                             )}
                         </Nav>
                     </Navbar.Collapse>

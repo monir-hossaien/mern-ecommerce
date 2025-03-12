@@ -349,7 +349,7 @@ const Profile = () => {
                                             <div className="row mt-4">
                                                 <div className="col-md-3 p-2">
                                                     <UserButton onClick={() => handleChange()} text="Save Change"
-                                                                className="btn btn-success"/>
+                                                                className="btn text-white w-75" style={{ background: "#00234D" }}/>
                                                 </div>
                                             </div>
                                         </div>

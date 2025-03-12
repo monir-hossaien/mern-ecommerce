@@ -193,7 +193,7 @@ const CartList = () => {
                                 <span>Total:</span>
                                 <span className="fw-bold">$ {payableAmount}</span>
                             </div>
-                            <CartBtn onClick={() => InvoiceHandler()} type="button" text="Proceed to Checkout" className="btn btn-success w-100 py-2 fw-bold" />
+                            <CartBtn onClick={() => InvoiceHandler()} type="button" text="Proceed to Checkout" className="btn text-white w-100 py-2 fw-bold" style={{ background: "#00234D"}} />
                             <Link to="/all-products" className="d-flex justify-content-center align-items-center mt-2 text-decoration-none">
                                 <p className="mb-0">Continue Shopping</p>
                                 <i className="bi bi-arrow-right-short fs-5"></i>

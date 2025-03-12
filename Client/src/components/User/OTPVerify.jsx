@@ -63,9 +63,9 @@ const OtpVerify = () => {
                                    className="form-control shadow-none focus-ring-success" placeholder="OTP"/>
                         </div>
                         <div className="mb-4">
-                            <Link onClick={()=> resendOTPHandler()} className="text-secondary small resend_link">Resend OTP</Link>
+                            <span onClick={()=> resendOTPHandler()} className="text-secondary small resend_link">Resend OTP</span>
                         </div>
-                        <UserButton type="submit" text="Next" className="btn btn-success w-100 mb-4"/>
+                        <UserButton type="submit" text="Next" className="btn text-white w-100 mb-4" style={{ background: "#00234D"}}/>
                         <div className="text-center">
                             <p>
                                 Not a member?

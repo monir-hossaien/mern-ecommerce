@@ -38,46 +38,8 @@ h1, h2, h3, h4, h5, h6,p{
 }
 
 /*navbar section*/
-#navbar_section{
-    position: sticky;
-    top: 0;
-    z-index: 1000 !important;
-    & .form-control{
-        font-size: 0.9rem;
-        color: rgba(0, 0, 0, 0.66);
-        &::placeholder{
-            font-size: 0.8rem;
-        }
-        &:focus{
-            box-shadow: none;
-            border: 1px solid rgba(0, 128, 0, 0.73);
-            background-color: rgba(0, 0, 0, 0.01);
-        }
-    }
-    & .profile_tab{
-        position: relative;
-        & .tab_content{
-            position: absolute;
-            right: -38px;
-            top: 64px;
-            width: 200px;
-            background-color: #fff;
-            padding: 0.5rem;
-            border-radius: 0.3rem;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-            & .nav_item{
-                color: #00234D;
-                width: 100%;
-                padding: 0.1rem 0.3rem;
-                transition: all 0.3s;
-                &:hover{
-                    background-color: rgba(0, 0, 0, 0.02);
-                    color: rgba(255, 0, 0, 0.63);
-                }
-            }
-
-        }
-    }
+#top_bar{
+    background: #00234D;
 }
 
 #product_list{

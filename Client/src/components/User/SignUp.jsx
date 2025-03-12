@@ -100,7 +100,7 @@ const SignUp = () => {
                             />
                         </div>
 
-                        <UserButton onClick={handleSubmit} text="Register" type="button" className="btn btn-success mb-4 w-100" />
+                        <UserButton onClick={handleSubmit} text="Register" type="button" className="btn text-white mb-4 w-100" style={{ background: "#00234D"}} />
 
                         <div className="text-center">
                             <p>
