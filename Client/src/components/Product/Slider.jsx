@@ -52,7 +52,7 @@ const Slider = () => {
                                         {/* Right Image (Always Visible) */}
                                         <div className="col-lg-6 col-md-6 col-12">
                                             <div className="d-flex justify-content-center align-items-center">
-                                                <img className="img-fluid w-100" src={image} alt="slider_image" />
+                                                <img className="img-fluid" src={image} alt="slider_image" />
                                             </div>
                                         </div>
 

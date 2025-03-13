@@ -171,7 +171,7 @@ body {
 
 
 .nav-pills > li > button.active {
-    background: var(--themeColor)!important;
+    background: #00234D!important;
     color: var(--themeWhiteColor)!important;
 }
 .nav-pills > li > button {
