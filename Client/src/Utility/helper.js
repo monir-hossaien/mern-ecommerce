@@ -57,38 +57,7 @@ export const  DeleteAlert = async ()=> {
     return result.isConfirmed;
 }
 
-export const SuccessAlert = async (msg)=> {
-    const result = await Swal.fire({
-        text: msg,
-        icon: "success",
-        confirmButtonColor: "#198754",
-        confirmButtonText: "OK",
-        allowOutsideClick: false
-    });
-    return result.isConfirmed;
-}
 
-export const FailAlert = async (msg)=> {
-    const result = await Swal.fire({
-        text: msg,
-        icon: "warning",
-        confirmButtonColor: "#fcac3f",
-        confirmButtonText: "Try Again",
-        allowOutsideClick: false
-    });
-    return result.isConfirmed;
-}
-
-export const InfoAlert = async (msg)=> {
-    const result = await Swal.fire({
-        text: msg,
-        icon: "info",
-        confirmButtonColor: "#198754",
-        confirmButtonText: "Go Ahead",
-        allowOutsideClick: false
-    });
-    return result.isConfirmed;
-}
 
 export const paymentStatusColor = (paymentStatus)=>{
     if(paymentStatus === "Pending"){

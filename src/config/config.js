@@ -5,9 +5,9 @@ export const JWT_EXPIRE_TIME= '24h' // Timestamp for 24h ahead
 
 
 export const EMAIL_HOST = "smtp.gmass.co.";
-export const EMAIL_PASS = "37766468-6f2b-4601-83bb-6f22ffb233cf";
+export const EMAIL_PASS = "fcb2bf4b-2605-4d24-ad5e-e0d9bce61f0a";
 export const EMAIL_USER = "gmass";
-export const EMAIL_PORT = 587;
+export const EMAIL_PORT = 25;
 
 // export const MAIL_ENCRYPTION="ssl"
 
