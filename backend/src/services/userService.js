@@ -1,5 +1,5 @@
-import {generateOTPExpireTime, generateOTP} from "../../src/config/config.js";
-import SendEmail from "../../src/utility/email.js";
+import {generateOTPExpireTime, generateOTP} from "../config/config.js";
+import SendEmail from "../utility/email.js";
 import {createToken} from "../utility/token.js";
 import mongoose from "mongoose";
 import UserProfile from "../models/user/profileModel.js";

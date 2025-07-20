@@ -1,4 +1,4 @@
-import WishModel from "../../src/models/product/wishModel.js";
+import WishModel from "../models/product/wishModel.js";
 import mongoose from "mongoose";
 const objId = mongoose.Types.ObjectId;
 

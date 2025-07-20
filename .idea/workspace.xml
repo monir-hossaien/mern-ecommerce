@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c6a72d36-c638-4153-a0ed-965b7f960275" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mern-shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/mern-shop.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Helpers/emailTamplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/Helpers/emailTamplate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Helpers/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/Helpers/helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/config/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/cartController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/cartController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/featureController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/featureController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/invoiceController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/invoiceController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/locationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/locationController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/productController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/productController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/remarkController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/remarkController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/sliderController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/sliderController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/wishController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/wishController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware/authMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middleware/authMiddleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Location/devisionModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/Location/devisionModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Location/districtModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/Location/districtModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Location/postModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/Location/postModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Location/unionModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/Location/unionModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/features/featuresModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/features/featuresModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/features/lagalModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/features/lagalModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/payment/invoiceModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/payment/invoiceModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/payment/invoiceProductsModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/payment/invoiceProductsModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/payment/paymentSettingsModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/payment/paymentSettingsModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product/brandModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/product/brandModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product/cartModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/product/cartModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product/categoryModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/product/categoryModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product/productDetailsModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/product/productDetailsModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product/productModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/product/productModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product/remarkModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/product/remarkModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product/reviewModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/product/reviewModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product/sliderModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/product/sliderModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product/wishModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/product/wishModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/user/profileModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/user/profileModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/user/userModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/models/user/userModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/cartService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/cartService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/featureService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/featureService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/invoiceService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/invoiceService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/locationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/locationService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/paymentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/paymentService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/productService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/productService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/remarkService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/remarkService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/sliderService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/sliderService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/userService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/wishService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/wishService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/utility/email.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/token.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/utility/token.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vercel.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;monir-hossaien&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/monir-hossaien/mern-ecommerce.git",
+    "accountId": "c0440440-872c-459c-86ec-bfb50cf7b100"
+  }
+}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2pbHLfJXRLZY85NPptuCHsX2m3m" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/This PC/Documents/GitHub/mern-shop/Client/src/assets/images&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\This PC\Documents\GitHub\mern-shop\Client\src\assets\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\This PC\Documents\GitHub\mern-shop\backend" />
+      <recent name="C:\Users\This PC\Documents\GitHub\mern-shop\Backend\src\models\user" />
+      <recent name="C:\Users\This PC\Documents\GitHub\mern-shop\Client\src\assets\images" />
+      <recent name="C:\Users\This PC\Documents\GitHub\mern-shop\Client\src\assets" />
+      <recent name="C:\Users\This PC\Documents\GitHub\mern-shop\src\models\payment" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c6a72d36-c638-4153-a0ed-965b7f960275" name="Changes" comment="" />
+      <created>1733027805372</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733027805372</updated>
+      <workItem from="1733027807989" duration="9016000" />
+      <workItem from="1733054415479" duration="29306000" />
+      <workItem from="1733370384553" duration="44385000" />
+      <workItem from="1733517810473" duration="22325000" />
+      <workItem from="1733683791000" duration="14972000" />
+      <workItem from="1733736148855" duration="38725000" />
+      <workItem from="1737293713987" duration="1101000" />
+      <workItem from="1738591481282" duration="119000" />
+      <workItem from="1739288366176" duration="189740000" />
+      <workItem from="1740363360667" duration="78912000" />
+      <workItem from="1741381723269" duration="24742000" />
+      <workItem from="1741461849350" duration="7032000" />
+      <workItem from="1741536706183" duration="1534000" />
+      <workItem from="1741776997923" duration="8675000" />
+      <workItem from="1741787737080" duration="278000" />
+      <workItem from="1741796293835" duration="3879000" />
+      <workItem from="1741805095250" duration="227000" />
+      <workItem from="1746722015870" duration="7548000" />
+      <workItem from="1752996372263" duration="655000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/backend/src/services/invoiceService.js</url>
+          <line>229</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

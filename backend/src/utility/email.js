@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import {EMAIL_HOST, EMAIL_PASS, EMAIL_PORT, EMAIL_USER, RESEND_API_KEY} from "../../src/config/config.js";
+import {EMAIL_HOST, EMAIL_PASS, EMAIL_PORT, EMAIL_USER, RESEND_API_KEY} from "../config/config.js";
 
 import { Resend } from 'resend';
 
