@@ -5,7 +5,7 @@ import UserProfile from "../models/user/profileModel.js";
 import User from "../models/user/userModel.js";
 import ProductReview from "../models/product/reviewModel.js";
 import {emailData} from "../Helpers/emailTamplate.js";
-import {SendEmail} from "../utility/email.js";
+import SendEmail from "../utility/email.js";
 
 // user registration service
 export const registerService = async (req)=>{
