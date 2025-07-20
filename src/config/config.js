@@ -9,7 +9,7 @@ export const EMAIL_PASS = "fcb2bf4b-2605-4d24-ad5e-e0d9bce61f0a";
 export const EMAIL_USER = "gmass";
 export const EMAIL_PORT = 25;
 
-export const RESEND_API_KEY=re_Wh8ByAt1_6tbc9QtYJF3mvFn5zE9pPLkn
+export const RESEND_API_KEY="re_Wh8ByAt1_6tbc9QtYJF3mvFn5zE9pPLkn"
 
 // export const MAIL_ENCRYPTION="ssl"
 
