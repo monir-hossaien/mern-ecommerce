@@ -2,7 +2,7 @@
 import {create} from "zustand";
 import axios from "axios";
 import {errorToast, unauthorized} from "../Utility/helper.js";
-const base_url = "https://mern-ecommerce-sable-kappa.vercel.app/api"
+const base_url = "https://mern-ecommerce2025.vercel.app/api"
 
 
 export const  wishStore = create((set)=>({
