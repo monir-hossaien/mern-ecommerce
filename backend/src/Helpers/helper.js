@@ -60,3 +60,7 @@ export const getPublicID = (imageURL)=>{
     const publicID = imageURL.split("/").pop().split(".")[0];
     return publicID;
 }
+
+
+// export const generateOTP = () => Math.floor(100000 + Math.random() * 900000);
+// export const generateOTPExpireTime = () => new Date(Date.now() + 5 * 60 * 1000);
