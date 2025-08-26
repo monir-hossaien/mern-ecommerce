@@ -4,10 +4,10 @@ export const JWT_KEY='ABC12341241234'
 export const JWT_EXPIRE_TIME= '24h' // Timestamp for 24h ahead
 
 
-export const EMAIL_HOST = "smtp.gmass.co.";
-export const EMAIL_PASS = "fcb2bf4b-2605-4d24-ad5e-e0d9bce61f0a";
-export const EMAIL_USER = "gmass";
-export const EMAIL_PORT = 25;
+export const EMAIL_HOST = "smtp-relay.brevo.com";
+export const EMAIL_PASS = "LPMOCTQ4c8sKa61q";
+export const EMAIL_USER = "95a933001@smtp-brevo.com";
+export const EMAIL_PORT = 587;
 
 export const RESEND_API_KEY="re_Wh8ByAt1_6tbc9QtYJF3mvFn5zE9pPLkn"
 
