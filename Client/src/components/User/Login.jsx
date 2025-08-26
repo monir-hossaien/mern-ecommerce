@@ -22,9 +22,9 @@ const Login = () => {
                 setSubmit(true)
                 let res = await sentOTPRequest(formData.email);
                 if(res){
+                    successToast(res?.message);
                     setEmail(formData.email)
                     setSubmit(false)
-                    successToast(res?.message);
                     navigate("/otp-verify");
                 }
             }

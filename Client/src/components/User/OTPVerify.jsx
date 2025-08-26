@@ -34,12 +34,11 @@ const OtpVerify = () => {
             else{
                 setSubmit(true)
                 let res = await OTPVerifyRequest(formData.otp);
-                console.log(res)
                 if(res.status === "success"){
+                    successToast(res?.message);
                     //email remove from local storage
                     removeEmail()
                     setSubmit(false)
-                    successToast(res?.message);
                     navigate("/");
                 }else{
                     errorToast(res?.message);

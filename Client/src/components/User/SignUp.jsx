@@ -36,10 +36,10 @@ const SignUp = () => {
                 setSubmit(true);
                 let res = await signUpRequest(formBody);
                 if (res.status === "success") {
+                    successToast(res?.message);
                     // Reset image after successful submission
                     setImage("images/default-avatar.png");
                     setSubmit(false);
-                    successToast(res?.message);
                     navigate("/login");
                 } else {
                     setSubmit(false);
