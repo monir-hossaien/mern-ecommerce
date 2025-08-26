@@ -51,6 +51,7 @@ export const registerService = async (req)=>{
 export const emailVerifyService = async (req)=>{
     try {
         const user_email = req.body.email;
+
         const user = await User.findOne({email: user_email});
         const profile = await UserProfile.findOne().select("name")
         if (!user) {
@@ -65,7 +66,6 @@ export const emailVerifyService = async (req)=>{
             const subject = "Your OTP Verification Code";
             const emailBody = emailData(profile?.name, updateOTP);
             await SendEmail(user_email, subject, emailBody);
-
             return {
                 statusCode: 200,
                 status: "success",

@@ -8,6 +8,7 @@ export const EMAIL_HOST = "smtp-relay.brevo.com";
 export const EMAIL_PASS = "LPMOCTQ4c8sKa61q";
 export const EMAIL_USER = "95a933001@smtp-brevo.com";
 export const EMAIL_PORT = 587;
+export const SENDER_EMAIL = "monirhdigital@gmail.com";
 
 export const RESEND_API_KEY="re_Wh8ByAt1_6tbc9QtYJF3mvFn5zE9pPLkn"
 

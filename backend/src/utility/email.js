@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import {EMAIL_HOST, EMAIL_PASS, EMAIL_PORT, EMAIL_USER, RESEND_API_KEY} from "../config/config.js";
+import {EMAIL_HOST, EMAIL_PASS, EMAIL_PORT, EMAIL_USER, SENDER_EMAIL} from "../config/config.js";
 
 // import { Resend } from 'resend';
 
@@ -20,7 +20,7 @@ const SendEmail = async(email, subject, emailBody)=>{
     })
 
     let mailOptions = {
-        from: "monirhossain0556@gmail.com",
+        from: SENDER_EMAIL,
         to: email,
         subject,
         html: emailBody
